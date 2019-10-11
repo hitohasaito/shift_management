@@ -20,7 +20,40 @@ https://docs.google.com/spreadsheets/d/1YOwR35FsnZkYWFS8X_xEACWmjajThaRa9MI-8DHk
 
 https://docs.google.com/spreadsheets/d/1YOwR35FsnZkYWFS8X_xEACWmjajThaRa9MI-8DHkWvE/edit#gid=1950278972
 
+
+機能一覧
+-----------
+ユーザー登録・ログイン機能									
+
+シフト作成・編集・削除機能					
+
+シフト一覧表示機能										
+
+シフトの自動人員配置機能										
+
+シフト一覧画面でのシフト検索機能					
+
+シフト公開機能					
+
+勤務希望登録機能									
+
+勤務希望一覧表示機能										
+
+コメント追加機能と通知機能					
+
+シフト表の配置人員編集機能						
+
+勤務登録の自動制限機能					
+
+アルバイト情報の編集・削除機能									
+
+アルバイト一覧表示機能					
+
+勤務希望登録時にラベルを追加する								
+
+
 使用予定Gem
+----------
 devise ransak
 
 
@@ -34,7 +67,7 @@ devise ransak
 
 デプロイ手順
 ------------
-1.heroku create 
+1.heroku create
 2.rails assets:precompile RAILS_ENV=production  
 3.git add -A(またはファイル名)  
 4.git commit -m "コミットメッセージ"  
