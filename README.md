@@ -4,22 +4,21 @@
 
 
 カタログ設計
-https://docs.google.com/spreadsheets/d/1SmiFTpaC-eawKYDSYCKy3VDE74d7RkjSf2yPUNT9MQw/edit#gid=1064800708
+https://docs.google.com/spreadsheets/d/1SmiFTpaC-eawKYDSYCKy3VDE74d7RkjSf2yPUNT9MQw/edit?usp=sharing
 
 テーブル定義
-https://docs.google.com/spreadsheets/d/1rjnD2ibadYYPnWowH3GFGYz_f9v2n_xrPK7suFUDZl8/edit#gid=1428317529
 
+https://docs.google.com/spreadsheets/d/1rjnD2ibadYYPnWowH3GFGYz_f9v2n_xrPK7suFUDZl8/edit?usp=sharing
 
 ER図
-https://docs.google.com/spreadsheets/d/1aUYA2vH61IZA8nqiwYvXX7rh_TGZsOnNDARGTAxWFrM/edit#gid=0
+https://docs.google.com/spreadsheets/d/1aUYA2vH61IZA8nqiwYvXX7rh_TGZsOnNDARGTAxWFrM/edit?usp=sharing
 
 画面遷移図
-
-https://docs.google.com/spreadsheets/d/1YOwR35FsnZkYWFS8X_xEACWmjajThaRa9MI-8DHkWvE/edit#gid=0
+https://docs.google.com/spreadsheets/d/1vpxBauWIX4_I43LHzXI8n9QpO1RpxgdkgZ-kFP2JSU0/edit?usp=sharing
 
 画面ワイヤーフレーム
+https://docs.google.com/spreadsheets/d/1YOwR35FsnZkYWFS8X_xEACWmjajThaRa9MI-8DHkWvE/edit?usp=sharing
 
-https://docs.google.com/spreadsheets/d/1YOwR35FsnZkYWFS8X_xEACWmjajThaRa9MI-8DHkWvE/edit#gid=1950278972
 
 
 機能一覧
