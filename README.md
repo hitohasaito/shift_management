@@ -4,13 +4,10 @@
 
 
 カタログ設計
-
-https://docs.google.com/spreadsheets/d/1rjnD2ibadYYPnWowH3GFGYz_f9v2n_xrPK7suFUDZl8/edit#gid=0
+https://docs.google.com/spreadsheets/d/1SmiFTpaC-eawKYDSYCKy3VDE74d7RkjSf2yPUNT9MQw/edit#gid=1064800708
 
 テーブル定義
-
 https://docs.google.com/spreadsheets/d/1rjnD2ibadYYPnWowH3GFGYz_f9v2n_xrPK7suFUDZl8/edit#gid=1428317529
-
 
 画面遷移図
 
