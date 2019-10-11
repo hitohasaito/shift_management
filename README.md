@@ -49,7 +49,7 @@ https://docs.google.com/spreadsheets/d/1YOwR35FsnZkYWFS8X_xEACWmjajThaRa9MI-8DHk
 
 アルバイト一覧表示機能					
 
-勤務希望登録時にラベルを追加する								
+ラベル追加機能							
 
 
 使用予定Gem
