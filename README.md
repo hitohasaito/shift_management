@@ -51,7 +51,7 @@ https://docs.google.com/spreadsheets/d/1YOwR35FsnZkYWFS8X_xEACWmjajThaRa9MI-8DHk
 
 使用予定Gem
 ----------
-devise ransak
+devise ransack
 
 
 
