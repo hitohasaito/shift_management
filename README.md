@@ -39,7 +39,7 @@ https://docs.google.com/spreadsheets/d/1YOwR35FsnZkYWFS8X_xEACWmjajThaRa9MI-8DHk
 
 勤務希望一覧表示機能										
 
-コメント追加機能と通知機能					
+コメント機能と通知機能					
 
 シフト表の配置人員編集機能						
 
@@ -61,7 +61,7 @@ devise ransack
 開発環境
 ------------
 
-* Ruby 2.3.0
+* Ruby 2.6.3
 * rails 5.2.3
 * postgresql 11.4
 
