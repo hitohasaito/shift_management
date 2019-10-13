@@ -1,0 +1,2 @@
+class RequestShiftsController < ApplicationController
+end
