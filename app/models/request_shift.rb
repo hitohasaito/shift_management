@@ -1,0 +1,2 @@
+class RequestShift < ApplicationRecord
+end
