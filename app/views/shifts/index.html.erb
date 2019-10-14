@@ -1,0 +1,16 @@
+<h1>シフト一覧</h1>
+
+<table>
+  <th>勤務日</th>
+  <th>勤務時間</th>
+  <th>担当業務</th>
+  <th>担当者</th>
+<% @shifts.each do |s| %>
+  <tr>
+    <td><%= s.duty_on %></td>
+    <td><%= s.duty_at %></td>
+    <td><%= s.job %></td>
+    <td><%= s.assigned_user %></td>
+  </tr>
+<% end %>
+</table>
