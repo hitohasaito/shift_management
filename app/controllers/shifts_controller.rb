@@ -1,5 +1,5 @@
 class ShiftsController < ApplicationController
-  before_action :get_id, only:[:show]
+  before_action :get_id, only:[:show, :edit, :update]
 
   def new
     @shift = Shift.new
@@ -19,6 +19,17 @@ class ShiftsController < ApplicationController
   end
 
   def show
+  end
+
+  def edit
+  end
+
+  def update
+    if @shift.update(shift_params)
+      redirect_to shifts_path, notice:"シフト情報を変更しました"
+    else
+      render "edit"
+    end
   end
 
   private
