@@ -11,4 +11,5 @@
     <td><%= @shift.assigned_user %></td>
   </tr>
 </table>
-<%= link_to "変更" ,edit_shift_path(@shift.id) %>
+<%= link_to "変更", edit_shift_path(@shift.id) %>
+<%= link_to "削除", shift_path(@shift.id), method: :delete, data: { confirm: '削除しますか？' } %>
