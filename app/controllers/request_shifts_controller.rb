@@ -6,10 +6,14 @@ class RequestShiftsController < ApplicationController
   def create
     @request = RequestShift.new(request_params)
     if @request.save
-      redirect_to "request_shifts_path"
+      redirect_to request_shifts_path
     else
       render "new"
     end
+  end
+
+  def index
+    @requests = RequestShift.all
   end
 
   private
