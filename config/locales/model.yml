@@ -1,0 +1,19 @@
+ja:
+  activerecord:
+    models:
+      shift:  シフト
+      user: ユーザー
+    attributes:
+      shift:
+        duty_on: 勤務日
+        duty_at: 勤務時間
+        job: 担当業務
+        assigned_user: 担当者
+      user:
+        number: 電話番号
+        name: 名前
+        email: メールアドレス
+        current_password: 現在のパスワード
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        remember_me: ログインを記憶
