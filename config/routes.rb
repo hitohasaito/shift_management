@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root "shifts#index"
 
-  devise_for :users
+  devise_for :users, controllers: {
+          sessions: 'users/sessions'
+        }
   resources :shifts
   resources :request_shifts
 
