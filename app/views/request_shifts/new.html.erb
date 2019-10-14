@@ -1,0 +1,27 @@
+<h1>勤務希望登録</h1>
+<%= form_with(model:@request, local:true) do |f| %>
+  <% if @request.errors.any? %>
+    <div class = "alert alert-warning">
+      <ul>
+        <% @request.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class = "request_info">
+  <%= f.label:worked_on %>
+  <%= f.date_field:worked_on %>
+</div>
+
+<div class = "request_info">
+  <%= f.label:worked_at %>
+  <%= f.time_field:worked_at %>
+</div>
+
+<div class = "request_info">
+  <%= f.label:work_job %>
+  <%= f.text_field:work_job %>
+</div>
+<%= f.submit "登録", data: { confirm: "登録後の変更は管理者へ連絡する必要があります。登録しますか？"} %>
+<% end %>
