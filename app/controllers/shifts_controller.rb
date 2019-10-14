@@ -1,5 +1,5 @@
 class ShiftsController < ApplicationController
-  before_action :get_id, only:[:show, :edit, :update]
+  before_action :get_id, only:[:show, :edit, :update, :destroy]
 
   def new
     @shift = Shift.new
@@ -30,6 +30,11 @@ class ShiftsController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  def destroy
+    @shift.destroy
+    redirect_to shifts_path, notice: "削除しました"
   end
 
   private
