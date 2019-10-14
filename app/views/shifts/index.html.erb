@@ -11,6 +11,7 @@
     <td><%= s.duty_at %></td>
     <td><%= s.job %></td>
     <td><%= s.assigned_user %></td>
+    <td><%= link_to "詳細", shift_path(s.id)%>
   </tr>
 <% end %>
 </table>
