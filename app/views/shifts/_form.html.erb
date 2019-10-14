@@ -1,0 +1,33 @@
+<%= form_with(model:@shift, local:true) do |f| %>
+  <% if @shift.errors.any? %>
+    <div class = "alert alert-warning">
+      <ul>
+        <% @shift.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class = "shift_info">
+  <%= f.label:duty_on %>
+  <%= f.date_field:duty_on %>
+</div>
+
+<div class = "shift_info">
+  <%= f.label:duty_at %>
+  <%= f.time_field:duty_at %>
+</div>
+
+<div class = "shift_info">
+  <%= f.label:job %>
+  <%= f.text_field:job %>
+</div>
+
+<div class = "shift_info">
+  <%= f.label:assigned_user %>
+  <%= f.text_field:assigned_user %>
+</div>
+
+<%= f.submit %> 
+
+<% end %>
