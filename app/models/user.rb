@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :assigned_works
   has_many :shifts, through :assigned_works, source: :shift
+  has_many :comments
 end
