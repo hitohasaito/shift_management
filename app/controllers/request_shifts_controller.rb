@@ -19,6 +19,6 @@ class RequestShiftsController < ApplicationController
   private
 
   def request_params
-    params.require(:request_shift).permit(:worked_on, :worked_at, :work_job)
+    params.require(:request_shift).permit(:worked_on, :start_work_at, :end_work_at, :work_job)
   end
 end

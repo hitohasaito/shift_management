@@ -2,6 +2,7 @@
 <table>
   <th>勤務日</th>
   <th>勤務時間</th>
+  <th>勤務終了時間</th>
   <th>担当業務</th>
   <th>担当者</th>
 <% @shifts.each do |s| %>
@@ -11,7 +12,7 @@
     <td><%= s.end_at %></td>
     <td><%= s.job %></td>
     <td><%= link_to "詳細", shift_path(s.id)%>
-    <td><%= link_to '照合', shifts_path(@shifts, duty_on :s.duty_on, started_at :s.started_at, end_at :s.end_at, job:s.job) %></td>
+    <td><%= link_to '照合', shifts_path(@shifts, duty_on: s.duty_on, started_at: s.started_at, end_at: s.end_at, job: s.job) %></td>
   </tr>
 <% end %>
   <td>結果<%= @shift %></td>

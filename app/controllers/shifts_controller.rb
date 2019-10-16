@@ -1,5 +1,6 @@
 class ShiftsController < ApplicationController
   before_action :get_id, only:[:show, :edit, :update, :destroy]
+  before_action :check_user, only:[:create]
 
   def new
     @shift = Shift.new
@@ -13,7 +14,6 @@ class ShiftsController < ApplicationController
       render "new"
     end
   end
-
   def index
     @shifts = Shift.all
   end
@@ -40,10 +40,14 @@ class ShiftsController < ApplicationController
   private
 
   def shift_params
-    params.require(:shift).permit(:duty_on, :duty_at, :job, :assigned_user)
+    params.require(:shift).permit(:duty_on, :started_at, :end_at, :job, :assigned_user)
   end
 
   def get_id
     @shift = Shift.find(params[:id])
+  end
+
+  def check_user
+    redirect_to new_request_shift_path, notice:"権限がありません" unless current_user.admin?
   end
 end

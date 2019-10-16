@@ -1,12 +1,14 @@
 <h1>シフト詳細</h1>
 <table>
   <th>勤務日</th>
-  <th>勤務時間</th>
+  <th>勤務開始時間</th>
+  <th>勤務開始終了時間</th>
   <th>担当業務</th>
   <th>担当者</th>
   <tr>
     <td><%= @shift.duty_on %></td>
-    <td><%= @shift.duty_at %></td>
+    <td><%= @shift.started_at %></td>
+    <td><%= @shift.end_at %></td>
     <td><%= @shift.job %></td>
     <td><%= @shift.assigned_user %></td>
   </tr>
