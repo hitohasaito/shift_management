@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_16_133151) do
+ActiveRecord::Schema.define(version: 2019_10_16_141011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2019_10_16_133151) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.time "end_work_at"
     t.index ["user_id"], name: "index_request_shifts_on_user_id"
   end
 
@@ -53,7 +54,6 @@ ActiveRecord::Schema.define(version: 2019_10_16_133151) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.time "end_at"
-    t.time "end_work_at"
     t.index ["user_id"], name: "index_shifts_on_user_id"
   end
 
