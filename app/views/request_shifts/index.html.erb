@@ -7,7 +7,8 @@
 <% @requests.each do |r| %>
   <tr>
     <td><%= r.worked_on %></td>
-    <td><%= r.worked_at %></td>
+    <td><%= r.start_work_at %></td>
+    <td><%= r.end_work_at %></td>
     <td><%= r.work_job %></td>
   </tr>
 <% end %>
