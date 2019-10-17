@@ -15,8 +15,32 @@ class ShiftsController < ApplicationController
     end
   end
   def index
+    @shifts = Shift.new
     @shifts = Shift.all
-  end
+    @request = RequestShift.all
+    if params[:id]
+        #binding.pry
+      @shift = Shift.find(params[:id])
+      #binding.pry
+
+        if @request.pluck(:worked_on).index(@shift.duty_on)
+
+          def request_id
+            @request.pluck(:worked_on).index(@shift.duty_on)
+          end
+
+         match_request = RequestShift.find(request_id)
+         #binding.pry
+
+          @shift.assigned_user = match_request.user.name
+          @shift.save!
+        end
+      else
+        @shifts = Shift.all
+        @request = RequestShift.all
+      end
+    end
+    #もし三つの条件に合致していたら、その該当request.shiftのuser_idをgetする
 
   def show
   end
