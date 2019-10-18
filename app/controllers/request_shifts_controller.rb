@@ -5,6 +5,7 @@ class RequestShiftsController < ApplicationController
 
   def create
     @request = RequestShift.new(request_params)
+    @request.user_id = current_user.id
     if @request.save
       redirect_to request_shifts_path
     else
