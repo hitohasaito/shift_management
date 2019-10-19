@@ -18,23 +18,19 @@ class ShiftsController < ApplicationController
     @shifts = Shift.new
     @shifts = Shift.all
     @request = RequestShift.all
+
     if params[:id]
-        #binding.pry
       @shift = Shift.find(params[:id])
-      #binding.pry
 
-        if @request.pluck(:worked_on).index(@shift.duty_on)
-
-          def request_id
-            @request.pluck(:worked_on).index(@shift.duty_on)
-          end
-
-         match_request = RequestShift.find(request_id)
-         #binding.pry
-
-          @shift.assigned_user = match_request.user.name
-          @shift.save!
+        def work_day
+          day = @request.pluck(:worked_on)
+          day.grep(@shift.duty_on)
         end
+
+         match_request = RequestShift.find_by(worked_on:work_day)
+         
+          @shift.assigned_user =  match_request.user.name
+          @shift.save!
       else
         @shifts = Shift.all
         @request = RequestShift.all
