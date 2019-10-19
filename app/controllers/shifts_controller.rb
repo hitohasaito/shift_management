@@ -22,21 +22,23 @@ class ShiftsController < ApplicationController
     if params[:id]
       @shift = Shift.find(params[:id])
 
-        def work_day
-          day = @request.pluck(:worked_on)
-          day.grep(@shift.duty_on)
+      days = @request.pluck(:worked_on)
+      work_day = days.grep(@shift.duty_on)
+
+        if work_day.present?
+          match_request = RequestShift.find_by(worked_on: work_day)
+
+          @shift.assigned_user =  match_request.user.name
+          @shift.save
+        else
+          flash[:notice] = "合致する志望者がいません"
         end
 
-         match_request = RequestShift.find_by(worked_on:work_day)
-         
-          @shift.assigned_user =  match_request.user.name
-          @shift.save!
       else
         @shifts = Shift.all
         @request = RequestShift.all
-      end
     end
-    #もし三つの条件に合致していたら、その該当request.shiftのuser_idをgetする
+  end
 
   def show
   end
