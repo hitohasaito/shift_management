@@ -17,28 +17,47 @@ class ShiftsController < ApplicationController
   def index
     @shifts = Shift.new
     @shifts = Shift.all
-    @request = RequestShift.all
+    @requests = RequestShift.all
 
     if params[:id]
       @shift = Shift.find(params[:id])
 
-      days = @request.pluck(:worked_on)
-      work_day = days.grep(@shift.duty_on)
+      #勤務日にマッチしている人たちのuser_idをゲット
+      days = @requests.pluck(:worked_on)
+      find_day = days.grep(@shift.duty_on)
+      match_request_days = RequestShift.where(worked_on: find_day)
+      day_match_users = match_request_days.pluck(:user_id, :created_at)
 
-        if work_day.present?
-          match_request = RequestShift.find_by(worked_on: work_day)
+      #勤務時間にマッチしている人たちのuser_idをゲット
+      match_request_times = RequestShift.where("start_work_at =< ? ", @shift.started_at) && RequestShift.where("end_work_at >= ? ", @shift.end_at)
+      match_time_users = match_request_times.pluck(:user_id, :created_at)
 
-          @shift.assigned_user =  match_request.user.name
-          @shift.save
-        else
-          flash[:notice] = "合致する志望者がいません"
-        end
+      #勤務業務にマッチしている人たちのuser_idをゲット
+      do_works = @requests.pluck(:work_job)
+      find_works = do_works.grep(@shift.job)
+      match_request_jobs = RequestShift.where(work_job: find_works)
+      job_match_users = match_request_jobs.pluck(:user_id, :created_at)
+
+      #3つの配列で重複しているuser_idをゲット
+      match_users = day_match_users && match_time_users && job_match_users
+
+      if match_users.present?
+        sort_user = match_users.sort_by{|a, b| b }.first
+        match_user_id = sort_user.first
+        @shift.assigned_user = User.find(match_user_id).name
+        @shift.save
+      else
+        flash[:notice] = "合致する志望者がいません"
+      end
 
       else
-        @shifts = Shift.all
-        @request = RequestShift.all
+        @shifts = Shift.all.order(created_at: :asc)
+        @requests = RequestShift.all
     end
   end
+
+  # 17:00-21:00　シフト
+  # 13:00-22:00  希望
 
   def show
   end
