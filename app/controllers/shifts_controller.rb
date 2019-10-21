@@ -4,6 +4,7 @@ class ShiftsController < ApplicationController
 
   def new
     @shift = Shift.new
+    @shift.assigned_works.build
   end
 
   def create
@@ -15,7 +16,6 @@ class ShiftsController < ApplicationController
     end
   end
   def index
-    @shifts = Shift.new
     @shifts = Shift.all
     @requests = RequestShift.all
 
@@ -44,8 +44,12 @@ class ShiftsController < ApplicationController
       if match_users.present?
         sort_user = match_users.sort_by{|a, b| b }.first
         match_user_id = sort_user.first
+
         @shift.assigned_user = User.find(match_user_id).name
         @shift.save
+        
+        assign = @shift.assigned_works.build(user_id: match_user_id, shift_id: @shift.id)
+        assign.save
       else
         flash[:notice] = "合致する志望者がいません"
       end
