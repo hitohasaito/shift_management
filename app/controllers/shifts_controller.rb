@@ -23,28 +23,28 @@ class ShiftsController < ApplicationController
       @shift = Shift.find(params[:id])
 
       #勤務日にマッチしている人たちのuser_idをゲット
-      # day_match_users = shift.match_days(@requests, shift)
+      day_match_users = @shift.match_days(@requests, @shift)
 
-      days = @requests.pluck(:worked_on)
-      find_day = days.grep(@shift.duty_on)
-      match_request_days = RequestShift.where(worked_on: find_day)
-      day_match_users = match_request_days.pluck(:user_id, :created_at)
+      # days = @requests.pluck(:worked_on)
+      # find_day = days.grep(@shift.duty_on)
+      # match_request_days = RequestShift.where(worked_on: find_day)
+      # day_match_users = match_request_days.pluck(:user_id, :created_at)
 
 
       #勤務時間にマッチしている人たちのuser_idをゲット
-      # match_time_users = shift.match_times(shift)
-      match_request_times = RequestShift.where("start_work_at =< ? ", @shift.started_at) && RequestShift.where("end_work_at >= ? ", @shift.end_at)
-      match_time_users = match_request_times.pluck(:user_id, :created_at)
+      match_time_users = @shift.match_times(@shift)
+      # match_request_times = RequestShift.where("start_work_at =< ? ", @shift.started_at) && RequestShift.where("end_work_at >= ? ", @shift.end_at)
+      # match_time_users = match_request_times.pluck(:user_id, :created_at)
 
       #勤務業務にマッチしている人たちのuser_idをゲット
-      do_works = @requests.pluck(:work_job)
-      find_works = do_works.grep(@shift.job)
-      match_request_jobs = RequestShift.where(work_job: find_works)
-      job_match_users = match_request_jobs.pluck(:user_id,:created_at)
+      job_match_users = @shift.match_jobs(@requests, @shift)
+      # do_works = @requests.pluck(:work_job)
+      # find_works = do_works.grep(@shift.job)
+      # match_request_jobs = RequestShift.where(work_job: find_works)
+      # job_match_users = match_request_jobs.pluck(:user_id,:created_at)
 
       #3つの配列で重複しているuser_idをゲット
       match_users = [day_match_users, match_time_users, job_match_users].inject(&:&)
-      binding.pry
 
       if match_users.present?
         sort_user = match_users.sort_by{|a, b| b }.first
