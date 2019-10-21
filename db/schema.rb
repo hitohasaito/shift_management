@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_17_095749) do
+ActiveRecord::Schema.define(version: 2019_10_20_142503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "assined_works", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "shift_id", null: false
+  create_table "assigned_works", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "shift_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["shift_id"], name: "index_assined_works_on_shift_id"
-    t.index ["user_id"], name: "index_assined_works_on_user_id"
+    t.index ["shift_id"], name: "index_assigned_works_on_shift_id"
+    t.index ["user_id"], name: "index_assigned_works_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -75,8 +75,8 @@ ActiveRecord::Schema.define(version: 2019_10_17_095749) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "assined_works", "shifts"
-  add_foreign_key "assined_works", "users"
+  add_foreign_key "assigned_works", "shifts"
+  add_foreign_key "assigned_works", "users"
   add_foreign_key "comments", "shifts"
   add_foreign_key "comments", "users"
   add_foreign_key "request_shifts", "users"
