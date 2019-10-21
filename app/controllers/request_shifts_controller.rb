@@ -5,6 +5,7 @@ class RequestShiftsController < ApplicationController
 
   def create
     @request = RequestShift.new(request_params)
+    @request.user_id = current_user.id
     if @request.save
       redirect_to request_shifts_path
     else
@@ -19,6 +20,6 @@ class RequestShiftsController < ApplicationController
   private
 
   def request_params
-    params.require(:request_shift).permit(:worked_on, :worked_at, :work_job)
+    params.require(:request_shift).permit(:worked_on, :start_work_at, :end_work_at, :work_job)
   end
 end

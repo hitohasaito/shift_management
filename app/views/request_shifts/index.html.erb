@@ -2,14 +2,18 @@
 <%= flash[:notice] %>
 <table>
   <th>勤務希望日</th>
-  <th>勤務希望時間</th>
+  <th>勤務開始希望時間</th>
+  <th>勤務終了希望時間</th>
   <th>希望業務</th>
 <% @requests.each do |r| %>
-  <tr>
-    <td><%= r.worked_on %></td>
-    <td><%= r.worked_at %></td>
-    <td><%= r.work_job %></td>
-  </tr>
+  <% if current_user.id == r.user_id %>
+    <tr>
+      <td><%= r.worked_on %></td>
+      <td><%= r.start_work_at %></td>
+      <td><%= r.end_work_at %></td>
+      <td><%= r.work_job %></td>
+    </tr>
+  <% end %>
 <% end %>
 </table>
 <%= link_to "シフト希望登録", new_request_shift_path %>

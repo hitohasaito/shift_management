@@ -1,4 +1,4 @@
-class AssinedWork < ApplicationRecord
+class AssignedWork < ApplicationRecord
   belongs_to :user
   belongs_to :shift
 end

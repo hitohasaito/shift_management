@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :shifts
   resources :request_shifts
+  get 'assigned_works/index'
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
