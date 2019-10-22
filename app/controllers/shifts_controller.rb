@@ -66,7 +66,7 @@ class ShiftsController < ApplicationController
   end
 
   def edit
-    @shift.assigned_works.build
+    # @shift.assigned_works.build
   end
 
   def update
