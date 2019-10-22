@@ -41,13 +41,13 @@ class ShiftsController < ApplicationController
         assign = @shift.assigned_works.build(user_id: match_user_id, shift_id: @shift.id)
 
         @user = User.find(match_user_id)
+        #ユーザーが持っているシフトの日付 登録しようとしている日付と同じだったら
         if @user.shifts.pluck(:duty_on).include?(@shift.duty_on)
           flash[:notice]= "#{@user.name}さんは#{@shift.duty_on}で登録されているシフトがあります。登録後は重複をチェックしてください"
           @shift.assigned_user = assign.user.name
           @shift.save
           assign.save
         else
-        #ユーザーが持っているシフトの日付 登録しようとしている日付と同じだったら
           @shift.assigned_user = assign.user.name
           @shift.save
           assign.save
