@@ -5,9 +5,9 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
 
     respond_to do |format|
-      binding.pry
       if @comment.save
         format.html{ redirect_to shift_path(@shift)}
+        format.js { render :index}
       else
         format.html{ redirect_to shift_path(@shift), notice: "投稿に失敗しました"}
       end
