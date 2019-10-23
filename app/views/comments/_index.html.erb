@@ -1,0 +1,7 @@
+<ul>
+<% comments.each do |comment| %>
+  <% if comment.present? %>
+    <li><%= comment.content %></li>
+  <% end %>
+<% end %>
+</ul>
