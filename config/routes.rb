@@ -2,9 +2,11 @@ Rails.application.routes.draw do
   root "shifts#index"
     devise_for:users
 
-  resources :shifts
+  resources :shifts do
+    resources :comments
+  end
+  end
   resources :request_shifts
-  resources :comments
   get 'assigned_works/index'
 
   if Rails.env.development?
