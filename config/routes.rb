@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :shifts
   resources :request_shifts
+  resources :comments
   get 'assigned_works/index'
 
   if Rails.env.development?
