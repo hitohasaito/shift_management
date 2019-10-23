@@ -1,0 +1,17 @@
+<% form_with(model: [@comment, @shift] ) do |f| %>
+  <% if @comment.errors.any? %>
+    <div class = "alert alert-warning">
+      <ul>
+        <% @comment.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class = "comment_field">
+    <%= f.label: content %>
+    <%= f.text_area: content %>
+  </div>
+  <% f.submit %>
+<% end %>
