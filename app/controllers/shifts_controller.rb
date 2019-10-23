@@ -63,6 +63,8 @@ class ShiftsController < ApplicationController
   end
 
   def show
+    @comment = @shift.comments.build
+    @comments = @shift.comments
   end
 
   def edit
