@@ -16,16 +16,17 @@ class ShiftsController < ApplicationController
     end
   end
   def index
-    @shifts = Shift.all
-    @requests = RequestShift.all
+    @shift = Shift.new
+    @q = Shift.ransack(params[:q])
+    @shifts = @q.result(distinct: :true)
 
     if params[:id]
-      @shift = Shift.find(params[:id])
+       @requests = RequestShift.all
+       @shift = Shift.find(params[:id])
       #勤務日にマッチしている人たちのuser_idと登録日時をゲット
       day_match_requests = @shift.match_days(@requests, @shift)
       #勤務時間にマッチしている人たちのuser_idと登録日時をゲット
       time_match_requests = @shift.match_times(@shift)
-      # binding.pry
       #勤務業務にマッチしている人たちのuser_idと登録日時をゲット
       job_match_requests = @shift.match_jobs(@requests, @shift)
       #3つの配列で重複しているuser_idと登録日時をゲット
@@ -38,12 +39,11 @@ class ShiftsController < ApplicationController
          sort_user = match_columns.sort_by{|a, b| b }.first
          match_user_id = sort_user.first
 
-        assign = @shift.assigned_works.build(user_id: match_user_id, shift_id: @shift.id)
-
-        @user = User.find(match_user_id)
+        assign = @shift.assigned_works.build(user_id: match_user_id, shift_id: @shift.id )
+        @user = User.find( match_user_id)
         #ユーザーが持っているシフトの日付 登録しようとしている日付と同じだったら
         if @user.shifts.pluck(:duty_on).include?(@shift.duty_on)
-          flash[:notice]= "#{@user.name}さんは#{@shift.duty_on}で登録されているシフトがあります。登録後は重複をチェックしてください"
+          flash[:notice]= "#{@user.name}さんは#{@shift.duty_on}で勤務が登録されているシフトがあります。登録後は重複をチェックしてください"
           @shift.assigned_user = assign.user.name
           @shift.save
           assign.save
@@ -57,7 +57,7 @@ class ShiftsController < ApplicationController
       end
 
     else
-      @shifts = Shift.all.order(created_at: :asc)
+      @shift = Shift.all.order(created_at: :asc)
       @requests = RequestShift.all
     end
   end
