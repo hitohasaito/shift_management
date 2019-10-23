@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources :shifts do
     resources :comments
   end
-  end
   resources :request_shifts
   get 'assigned_works/index'
 
