@@ -16,8 +16,9 @@
 <%= link_to "変更", edit_shift_path(@shift.id) %>
 <%= link_to "削除", shift_path(@shift.id), method: :delete, data: { confirm: '削除しますか？' } %>
 
-<div id = "comment_area" >
-  <%= render partial: "comments/index", locals: {comments: @comments, shift: @shift} %>
+<div id = "comment_area" align="center">>
+  <%= render partial: "comments/index", locals: {comments: @comments, shift:@shift} %>
 </div>
+<div class ="form" align="center" >
   <%= render partial: "comments/form", locals: {comment: @comment, shift: @shift} %>
-<%= link_to "変更", edit_shift_path(@shift) %>
+</div>

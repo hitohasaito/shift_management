@@ -62,7 +62,7 @@ class ShiftsController < ApplicationController
     end
   end
 
-  def show
+  def show 
     @comment = @shift.comments.build
     @comments = @shift.comments
   end

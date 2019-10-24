@@ -1,7 +1,11 @@
-<ul>
+<table border="1" align="center">
 <% comments.each do |comment| %>
-  <% if comment.present? %>
-    <li><%= comment.content %></li>
-  <% end %>
+  <% if comment.id.present? %>
+    <p><%= comment.user.name %></p>
+    <p><%= comment.content %></p>
+      <% if comment.user == current_user %>
+      <p><%= link_to 'コメントを削除する', shift_comment_path(comment.shift_id, comment.id), method: :delete, remote: true %></p>
+      <% end %>
+    <% end %>
 <% end %>
-</ul>
+</table>
