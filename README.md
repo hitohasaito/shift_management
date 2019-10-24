@@ -43,7 +43,7 @@ https://docs.google.com/spreadsheets/d/1YOwR35FsnZkYWFS8X_xEACWmjajThaRa9MI-8DHk
 
 シフト表の配置人員編集機能						
 
-勤務登録の自動制限機能					
+勤務状況チェックサポート機能					
 
 アルバイト情報の編集・削除機能									
 
