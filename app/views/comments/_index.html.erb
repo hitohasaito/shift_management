@@ -5,6 +5,7 @@
     <p><%= comment.content %></p>
       <% if comment.user == current_user %>
       <p><%= link_to 'コメントを削除する', shift_comment_path(comment.shift_id, comment.id), method: :delete, remote: true %></p>
+      <p><%= link_to 'コメントを編集する', edit_shift_comment_path(comment.shift_id, comment.id), remote: true %></p>
       <% end %>
     <% end %>
 <% end %>
