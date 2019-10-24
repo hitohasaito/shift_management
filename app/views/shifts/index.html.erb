@@ -38,10 +38,13 @@
     <td><%= s.job %></td>
     <td><%= s.assigned_user %></td>
     <td><%= link_to "詳細", shift_path(s.id)%></td>
-    <td><%= link_to '照合', shifts_path(@shift, id: s.id) %></td>
+    <% if current_user.admin? %>
+      <td><%= link_to '照合', shifts_path(@shift, id: s.id) %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
+<% if current_user.admin? %>
 <br>
 <table border="1" align="center">
   <tr>
@@ -65,3 +68,4 @@
 <% end %>
 </table>
 <p><%= link_to 'シフト作成', new_shift_path %></p>
+<% end %>
