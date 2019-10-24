@@ -3,11 +3,13 @@ class CommentsController < ApplicationController
   before_action :set_shift, only:[:create, :edit, :update, :destroy]
 
   def create
+    @users = User.all
     @comment = @shift.comments.build(comment_params)
     @comment.user_id = current_user.id
 
     respond_to do |format|
       if @comment.save
+        CommentMailer.comment_mail(@comment, @users).deliver
         format.html{ redirect_to shift_path(@shift)}
         format.js { render :index}
       else
