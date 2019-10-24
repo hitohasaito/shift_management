@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root "shifts#top"
 
   devise_for:users
+  get 'users/index'
 
   resources :shifts do
     resources :comments
