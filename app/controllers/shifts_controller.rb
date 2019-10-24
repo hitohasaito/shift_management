@@ -1,6 +1,7 @@
 class ShiftsController < ApplicationController
   before_action :get_id, only:[:show, :edit, :update, :destroy]
   before_action :check_user, only:[:create]
+  before_action :authenticate_user!
 
   def new
     @shift = Shift.new
@@ -62,7 +63,7 @@ class ShiftsController < ApplicationController
     end
   end
 
-  def show 
+  def show
     @comment = @shift.comments.build
     @comments = @shift.comments
   end
