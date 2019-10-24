@@ -1,0 +1,3 @@
+<p>あなたの初期パスワードは</p>
+<p><%= @user.name %></p>さんはアルバイトとして登録されました。</p>
+<p>こちらからパスワードのリセットを行ってください<%= link_to "リセットはこちら", edit_password_url(@user, reset_password_token: @token)%></p>
