@@ -1,7 +1,7 @@
 class RequestShiftsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_params, only:[:edit,:update]
-  before_action :check_user, only:[:edit, :update]
+  before_action :set_params, only:[:edit,:update, :destroy]
+  before_action :check_user, only:[:edit, :update, :destroy]
   def new
     @request = RequestShift.new
   end
@@ -25,6 +25,11 @@ class RequestShiftsController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  def destroy
+    @request.destroy
+    flash[:notice] = "削除しました"
   end
 
   def index
