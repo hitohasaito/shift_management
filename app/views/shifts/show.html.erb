@@ -15,3 +15,12 @@
 </table>
 <%= link_to "変更", edit_shift_path(@shift.id) %>
 <%= link_to "削除", shift_path(@shift.id), method: :delete, data: { confirm: '削除しますか？' } %>
+
+<p align="center">シフトに入ることができなくなった人は、ここに代理を探したい旨を書き込むことができます。</p>
+<div id = "comment_area" align="center">
+  <%= render partial: "comments/index", locals: {comments: @comments, shift:@shift} %>
+</div>
+<p align="center">コメント入力欄</p>
+<div class ="form" align="center" >
+  <%= render partial: "comments/form", locals: {comment: @comment, shift: @shift} %>
+</div>
