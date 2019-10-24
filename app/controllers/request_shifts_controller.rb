@@ -1,6 +1,7 @@
 class RequestShiftsController < ApplicationController
   before_action :authenticate_user!
-  # before_action :check_user, only:[:index]
+  before_action :set_params, only:[:edit,:update]
+  before_action :check_user, only:[:edit, :update]
   def new
     @request = RequestShift.new
   end
@@ -15,6 +16,17 @@ class RequestShiftsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @shift.update(shift_params)
+      redirect_to shifts_path, notice:"希望を変更しました"
+    else
+      render "edit"
+    end
+  end
+
   def index
     @requests = RequestShift.all
   end
@@ -24,8 +36,12 @@ class RequestShiftsController < ApplicationController
   def request_params
     params.require(:request_shift).permit(:worked_on, :start_work_at, :end_work_at, :work_job)
   end
+
+  def set_params
+    @request = RequestShift.find(params[:id])
+  end
   def check_user
     @request = RequestShift.find(params[:id])
-    redirect_to new_request_shift_path, notice:"権限がありません" unless current_user.id == @request.user_id
+    redirect_to request_shifts_path, notice: "権限がありません。管理者に連絡してください" unless current_user.admin?
   end
 end
