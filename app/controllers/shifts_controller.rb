@@ -22,8 +22,8 @@ class ShiftsController < ApplicationController
     @shifts = @q.result(distinct: :true)
 
     if params[:id]
-       @requests = RequestShift.all
-       @shift = Shift.find(params[:id])
+      @requests = RequestShift.all
+      @shift = Shift.find(params[:id])
       #勤務日にマッチしている人たちのuser_idと登録日時をゲット
       day_match_requests = @shift.match_days(@requests, @shift)
       #勤務時間にマッチしている人たちのuser_idと登録日時をゲット
@@ -56,7 +56,6 @@ class ShiftsController < ApplicationController
       else
           flash[:notice] = "合致する志望者がいません"
       end
-
     else
       @shift = Shift.all.order(created_at: :asc)
       @requests = RequestShift.all
