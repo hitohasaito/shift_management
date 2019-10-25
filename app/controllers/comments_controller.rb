@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_comment, only:[:edit, :update, :destroy]
   before_action :set_shift, only:[:create, :edit, :update, :destroy]
+  before_action :check_user, only:[:edit, :update, :destroy]
 
   def create
     @users = User.all
@@ -48,5 +50,11 @@ class CommentsController < ApplicationController
 
   def set_shift
     @shift = Shift.find(params[:shift_id])
+  end
+
+  def check_user
+    comment = Comment.find(params[:id])
+    shift = Shift.find(params[:shift_id])
+    redirect_to shift_path(shift.id), notice: "権限がありません" unless current_user.id == comment.user_id || current_user.admin?
   end
 end
