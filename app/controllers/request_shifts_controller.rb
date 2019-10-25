@@ -29,6 +29,7 @@ class RequestShiftsController < ApplicationController
 
   def destroy
     @request.destroy
+    redirect_to request_shifts_path
     flash[:notice] = "削除しました"
   end
 
