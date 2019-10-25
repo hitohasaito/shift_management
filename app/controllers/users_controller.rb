@@ -13,6 +13,6 @@ class UsersController < ApplicationController
   private
 
   def check_user
-    redirect_to shifts_path, nnotice: "権限がありません" unless current_user.admin?
+    redirect_to shifts_path, notice: "権限がありません" unless current_user.admin?
   end
 end
