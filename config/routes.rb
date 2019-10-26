@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     sessions: "users/sessions",
   }
 
-  resources :users, only: [:index, :edit, :update]
+resources :users, only: [:index, :edit, :update]
 
   resources :shifts do
     resources :comments
