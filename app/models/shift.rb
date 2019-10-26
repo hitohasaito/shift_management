@@ -18,7 +18,7 @@ class Shift < ApplicationRecord
   end
 
   def match_times(shift)
-    match_request_times = RequestShift.where("start_work_at <= ? ", shift.started_at).where("end_work_at >= ? ", shift.end_at)
+    match_request_times = RequestShift.where("start_work_at <= ? ", shift.started_at).where("end_work_at <= ? ", shift.end_at)
     match_time_users = match_request_times.pluck(:id)
   end
 #勤務希望開始時間よりも、シフト開始時間の方が遅い
