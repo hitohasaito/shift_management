@@ -2,6 +2,7 @@ class ShiftsController < ApplicationController
   before_action :get_id, only:[:show, :edit, :update, :destroy]
   before_action :check_user, only:[:create]
   before_action :authenticate_user!
+  before_action :check_released, only:[:index]
 
   def new
     @shift = Shift.new
@@ -110,5 +111,9 @@ class ShiftsController < ApplicationController
 
   def check_user
     redirect_to new_request_shift_path, notice:"権限がありません" unless current_user.admin?
+  end
+
+  def check_released
+    redirect_to request_shifts_path, notice: "シフトはリリース前です" unless Shift.released.present? || current_user.admin?
   end
 end
