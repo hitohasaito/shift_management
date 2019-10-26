@@ -101,7 +101,7 @@ class ShiftsController < ApplicationController
   private
 
   def shift_params
-    params.require(:shift).permit(:duty_on, :started_at, :end_at, :job, :assigned_user, :user_ids,[],:status,[0,1] )
+    params.require(:shift).permit(:duty_on, :started_at, :end_at, :job, :assigned_user, :user_ids,[],:status )
   end
 
   def get_id
