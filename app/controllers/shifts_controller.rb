@@ -17,6 +17,7 @@ class ShiftsController < ApplicationController
       render "new"
     end
   end
+
   def index
     @shift = Shift.new
     @q = Shift.ransack(params[:q])
