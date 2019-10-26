@@ -19,6 +19,7 @@ ja:
         password: パスワード
         password_confirmation: 確認用パスワード
         remember_me: ログインを記憶
+        admin: 管理者
       request_shift:
         worked_on: 勤務希望日
         start_work_at: 勤務開始希望時間
