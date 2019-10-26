@@ -10,6 +10,10 @@ Rails.application.routes.draw do
 
   resources :shifts do
     resources :comments
+    collection do
+    patch :release
+    patch :nonrelease
+    end
   end
   resources :request_shifts
   get 'assigned_works/index'

@@ -2,6 +2,7 @@ class ShiftsController < ApplicationController
   before_action :get_id, only:[:show, :edit, :update, :destroy]
   before_action :check_user, only:[:create]
   before_action :authenticate_user!
+  before_action :check_released, only:[:index]
 
   def new
     @shift = Shift.new
@@ -16,6 +17,7 @@ class ShiftsController < ApplicationController
       render "new"
     end
   end
+
   def index
     @shift = Shift.new
     @q = Shift.ransack(params[:q])
@@ -84,10 +86,24 @@ class ShiftsController < ApplicationController
     redirect_to shifts_path, notice: "削除しました"
   end
 
+  def release
+    shifts = Shift.all
+      shifts.update(status:1)
+      @shifts = Shift.where(status:1)#1はreleasedとしてenumで定義
+      redirect_to  shifts_path, notice: '公開しました'
+  end
+
+  def nonrelease
+      shifts = Shift.all
+      shifts.update(status:0)
+      @shifts = Shift.where(status:0)#0はnonreleasedとしてenumで定義
+      redirect_to  shifts_path, notice: '非公開にしました'
+  end
+
   private
 
   def shift_params
-    params.require(:shift).permit(:duty_on, :started_at, :end_at, :job, :assigned_user, :user_ids,[] )
+    params.require(:shift).permit(:duty_on, :started_at, :end_at, :job, :assigned_user, :user_ids,[],:status )
   end
 
   def get_id
@@ -96,5 +112,9 @@ class ShiftsController < ApplicationController
 
   def check_user
     redirect_to new_request_shift_path, notice:"権限がありません" unless current_user.admin?
+  end
+
+  def check_released
+    redirect_to request_shifts_path, notice: "シフトはリリース前です" unless Shift.released.present? || current_user.admin?
   end
 end
