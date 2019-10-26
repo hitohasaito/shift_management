@@ -1,4 +1,7 @@
 <h1>シフト一覧</h1>
+
+<% if released? %>
+  <%= link_to '非公開にする', nonrelease_shifts_path, method: :patch  %>
 <div class = "serach_form">
   <%= search_form_for @q do |f| %>
 
@@ -43,6 +46,10 @@
     <% end %>
   </tr>
 <% end %>
+<% else %>
+    <%= link_to '公開にする',release_shifts_path, method: :patch%>
+<% end %>
+
 </table>
 <% if current_user.admin? %>
 <br>

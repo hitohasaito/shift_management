@@ -8,6 +8,8 @@ class Shift < ApplicationRecord
   validates :end_at, presence: true
   validates :job, presence: true
 
+  enum status:{nonreleased: 0, released: 1}
+
   def match_days(requests, shift)
     days = requests.pluck(:worked_on)
     find_day = days.grep(shift.duty_on)
@@ -27,12 +29,4 @@ class Shift < ApplicationRecord
     job_match_users = match_request_jobs.pluck(:id)
   end
 
-  # def find_match_user(match_records)
-  #   match_columns = match_records.pluck(:user_id, :created_at)
-  #   sort_user = match_columns.sort_by{|a, b| b }.first
-  #   match_user_id = sort_user.first
-  # end
-
-  def time_scope
-  end
 end
