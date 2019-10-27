@@ -17,5 +17,5 @@ class User < ApplicationRecord
 
   VALID_PHONE_REGEX = /\A\d{10}$|^\d{11}\z/
   validates :number, presence: true, format: { with: VALID_PHONE_REGEX }
-  valodates :name, presence, true
+  validates :name, presence: true
 end
