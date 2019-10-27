@@ -17,6 +17,7 @@
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
       <%= link_to "ユーザー一覧",users_path %>
       <%= link_to "新規登録", new_user_registration_path %>
+      <%= link_to 'シフト作成', new_shift_path %>
     <% elsif user_signed_in? && ! current_user.admin? %>
       <%= link_to "シフト一覧", shifts_path %>
       <%= link_to "勤務希望登録",new_request_shift_path %>
