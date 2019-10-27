@@ -17,8 +17,8 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-    redirect_to users_path, notice:"更新しました"
-end
+      redirect_to users_path, notice:"更新しました"
+    end
   end
 
   private
