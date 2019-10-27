@@ -1,6 +1,8 @@
 <h1>シフト一覧</h1>
   <% if released?%>
+   <% if current_user.admin? %>
     <%= link_to '非公開にする', nonrelease_shifts_path, method: :patch  %>
+   <% end %>
 <div class = "serach_form">
   <%= search_form_for @q do |f| %>
 
@@ -34,9 +36,9 @@
   </tr>
 <% @shifts.each do |s| %>
   <tr>
-    <td><%= s.duty_on %></td>
-    <td><%= s.started_at%></td>
-    <td><%= s.end_at%></td>
+    <td><%= s.duty_on.strftime("%Y年%-m月%-d日") %></td>
+    <td><%= s.started_at.strftime("%-H時%-M分")%></td>
+    <td><%= s.end_at.strftime("%-H時%-M分")%></td>
     <td><%= s.job %></td>
     <td><%= s.assigned_user %></td>
     <td><%= link_to "詳細", shift_path(s.id)%></td>
@@ -46,7 +48,7 @@
   </tr>
 <% end %>
 </table>
-<% else %>
+<% elsif current_user.admin? %>
     <%= link_to '公開する',release_shifts_path, method: :patch%>
 <% end %>
 
@@ -64,12 +66,12 @@
   </tr>
 <% @requests.each do |r| %>
   <tr>
-    <td><%= r.worked_on %></td>
-    <td><%= r.start_work_at%></td>
-    <td><%= r.end_work_at%></td>
+    <td><%= r.worked_on.strftime("%Y年%-m月%-d日") %></td>
+    <td><%= r.start_work_at.strftime("%-H時%-M分")%></td>
+    <td><%= r.end_work_at.strftime("%-H時%-M分")%></td>
     <td><%= r.work_job %></td>
     <td><%= r.user.name %></td>
-    <td><%= r.created_at %></td>
+    <td><%= r.created_at.strftime("%-m月%-d日 %-H時%-M分%-S秒") %></td>
     <td><%= link_to "詳細", request_shifts_path %></td>
   </tr>
 <% end %>
