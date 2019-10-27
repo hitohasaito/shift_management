@@ -3,8 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  after_create :registration_mail
 
+  after_create :registration_mail
+  
   def registration_mail
     RegistrationMailer.registration_mail(self).deliver
   end
