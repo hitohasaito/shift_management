@@ -67,9 +67,28 @@ RSpec.feature "シフト情報管理機能", type: :feature do
   scenario "照合ボタンを押すと、希望に合致するアルバイトの氏名が担当者欄に入るかテスト" do
     visit shifts_path
 
-     click_link "照合"
+    click_link "照合"
 
     expect(page).to have_content "name1"
+      #save_and_open_page
+  end
+
+  scenario "シフトの非公開ボタンを押すと、シフトが非公開にできるかテスト" do
+    visit shifts_path
+
+    click_link "非公開にする"
+
+    expect(page).to have_content "非公開にしました"
+      #save_and_open_page
+  end
+  scenario "シフトの公開ボタンを押すと、シフトが非公開にできるかテスト" do
+    visit shifts_path
+
+    click_link "非公開にする"
+
+    click_link "公開する"
+
+    expect(page).to have_content "公開しました"
       #save_and_open_page
   end
 end

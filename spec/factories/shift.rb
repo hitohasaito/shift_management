@@ -6,6 +6,7 @@ FactoryBot.define do
     started_at { DateTime.new(2019, 10 ,10, 10, 30, 45, 0.375) }
     end_at { DateTime.new(2019, 10 ,10, 17, 00, 45, 0.375) }
     job { "自習室" }
+    status {"released"}
   end
 
   factory :second_shift, class: Shift do
@@ -14,6 +15,7 @@ FactoryBot.define do
     started_at { DateTime.new(2019, 10 ,20, 12, 00,45, 0.375) }
     end_at { DateTime.new(2019, 10 ,20, 20, 00, 45, 0.375) }
     job { "受付" }
+    status {"nonreleased"}
   end
 
   factory :third_shift, class: Shift do
