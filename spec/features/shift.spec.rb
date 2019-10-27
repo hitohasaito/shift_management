@@ -5,8 +5,8 @@ RSpec.feature "シフト情報管理機能", type: :feature do
   background do
     @user = FactoryBot.create(:user)
     #管理者ログイン
-    # @shift = FactoryBot.create(:shift)
-    # @request = FactoryBot.create(:request_shift, user_id: @user.id)
+    @shift = FactoryBot.create(:shift)
+    @request = FactoryBot.create(:request_shift, user_id: @user.id)
 
     visit new_user_session_path
 
@@ -34,28 +34,24 @@ RSpec.feature "シフト情報管理機能", type: :feature do
     select 20, from: "shift_end_at_4i"
     select 30, from: "shift_end_at_5i"
     select 30, from: "shift_end_at_5i"
-    # select "10", from: "shift_started_at_4i"
-    # select "10", from: "shift_started_at_5i"
-    # select "12", from: "shift_end_at_4i"
-    # select "30", from: "shift_end_at_5i"
-    # byebug
-    click_button "登録する"
-    save_and_open_page
 
-    # visit shifts_path
-    # expect(page).to have_content "2019年10月28日"
+    click_button "登録する"
+
+    visit shifts_path
+
     expect(page).to have_content "2019年10月28日"
     expect(page).to have_content "10時10分"
     expect(page).to have_content "20時30分"
     expect(page).to have_content "受付"
   end
   #
-  # scenario "シフト一覧のテスト" do
-  #   visit shifts_path
-  #
-  #   expect(page).to have_content "2019年10月10日"
-  #   expect(page).to have_content "10時0分"
-  #   expect(page).to have_content "受付"
-  #
-  # end
+  scenario "シフト一覧のテスト" do
+    visit shifts_path
+    save_and_open_page
+    expect(page).to have_content "2019年10月10日"
+    expect(page).to have_content "10時30分"
+    expect(page).to have_content "17時0分"
+    expect(page).to have_content "自習室"
+
+  end
 end
