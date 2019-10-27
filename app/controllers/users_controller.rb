@@ -9,8 +9,12 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    redirect_to users_path, notice:"削除しました"
+    if User.where(admin:true).count == 1
+      redirect_to users_path, notice:"管理者は1名は必要です"
+    else
+      @user.destroy
+      redirect_to users_path, notice:"削除しました"
+    end
   end
 
   def edit
