@@ -1,7 +1,7 @@
-<p>こんにちは <%= @user.name %>!さん</p>
+<p>こんにちは <%= @user.name %>さん</p>
 <p>以下のメールアドレスでユーザー登録されました。</p>
 <p> <%= @user.email %> </p>
 
-<p>以下のリンクのページからパスワードの再設定を行いログインしてください。</p>
+<p>ログイン画面下部のパスワードの再設定リンクからパスワードを再設定しログインしてみてください。</p>
 
-<p><%= link_to 'パスワード再設定', edit_password_url(@user, reset_password_token: @token) %></p>
+<p><%= link_to 'ログイン',new_user_session_url %></p>
