@@ -1,9 +1,12 @@
 <h1>希望一覧</h1>
-<table>
-  <th>勤務希望日</th>
-  <th>勤務開始希望時間</th>
-  <th>勤務終了希望時間</th>
-  <th>希望業務</th>
+<table border="1" align="center">
+  <tr>
+    <th>勤務希望日</th>
+    <th>勤務開始希望時間</th>
+    <th>勤務終了希望時間</th>
+    <th>希望業務</th>
+    <th colspan="2"></th>
+  </tr>
 <% @requests.each do |r| %>
   <% if current_user.id == r.user_id || current_user.admin? %>
     <tr>

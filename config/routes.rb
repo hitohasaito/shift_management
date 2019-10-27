@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  root "shifts#top"
+  root to: "users#top"
 
   devise_for:users, controllers: {
     registrations: 'users/registrations',
     sessions: "users/sessions",
   }
 
-  get 'users/index'
+resources :users, only: [:index, :edit, :update]
 
   resources :shifts do
     resources :comments

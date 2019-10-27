@@ -2,7 +2,9 @@ ja:
   activerecord:
     models:
       shift:  シフト
+      request_shift: 勤務希望
       user: ユーザー
+      comment: コメント
     attributes:
       shift:
         duty_on: 勤務日
@@ -17,3 +19,11 @@ ja:
         password: パスワード
         password_confirmation: 確認用パスワード
         remember_me: ログインを記憶
+        admin: 管理者
+      request_shift:
+        worked_on: 勤務希望日
+        start_work_at: 勤務開始希望時間
+        end_work_at: 勤務終了希望時間
+        work_job: 希望業務
+      comment:
+        content: 内容
