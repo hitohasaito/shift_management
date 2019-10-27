@@ -31,6 +31,10 @@ RSpec.feature "シフト情報管理機能", type: :feature do
     select 10, from: "shift_started_at_5i"
     select 12, from: "shift_end_at_4i"
     select 30, from: "shift_end_at_5i"
+    # select "10", from: "shift_started_at_4i"
+    # select "10", from: "shift_started_at_5i"
+    # select "12", from: "shift_end_at_4i"
+    # select "30", from: "shift_end_at_5i"
     # byebug
     # expect(page).to have_content "2019年10月28日"
     expect(page).to have_content "2019-10-28"
