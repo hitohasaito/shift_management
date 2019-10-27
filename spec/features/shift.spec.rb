@@ -36,7 +36,14 @@ RSpec.feature "シフト情報管理機能", type: :feature do
     # select "12", from: "shift_end_at_4i"
     # select "30", from: "shift_end_at_5i"
     # byebug
+
+    click_button "登録する"
+
+    visit shifts_path(Shift.first)
     # expect(page).to have_content "2019年10月28日"
+
+    save_and_open_page
+    
     expect(page).to have_content "2019-10-28"
     expect(page).to have_content "10時10分"
     expect(page).to have_content "12時30分"
