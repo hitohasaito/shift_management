@@ -39,7 +39,7 @@ RSpec.feature "勤務希望管理", type: :feature do
       expect(page).to have_content "19時30分"
       expect(page).to have_content "自習室"
     end
-    #
+
     scenario "勤務希望一覧のテスト" do
       visit request_shifts_path
 
