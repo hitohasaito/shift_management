@@ -57,11 +57,19 @@ RSpec.feature "シフト情報管理機能", type: :feature do
 
   scenario "シフト詳細確認のテスト" do
     visit shift_path(1)
-  
+
     expect(page).to have_content "2019年10月10日"
     expect(page).to have_content "10時30分"
     expect(page).to have_content "17時0分"
     expect(page).to have_content "自習室"
+  end
 
+  scenario "照合ボタンを押すと、希望に合致するアルバイトの氏名が担当者欄に入るかテスト" do
+    visit shifts_path
+
+     click_link "照合"
+
+    expect(page).to have_content "name1"
+      #save_and_open_page
   end
 end
