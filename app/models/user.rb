@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :shifts, through: :assigned_works, source: :shift
   has_many :comments
   has_many :request_shifts, dependent: :destroy
+
   VALID_PHONE_REGEX = /\A\d{10}$|^\d{11}\z/
   validates :phone, presence: true, format: { with: VALID_PHONE_REGEX }
+  name :presence, true
 end
