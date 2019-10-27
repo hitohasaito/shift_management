@@ -7,9 +7,9 @@
     <th>担当業務</th>
     <th>担当者</th>
   <tr>
-    <td><%= @shift.duty_on %></td>
-    <td><%= @shift.started_at%></td>
-    <td><%= @shift.end_at %></td>
+    <td><%= @shift.duty_on.strftime("%Y年%-m月%-d日") %></td>
+    <td><%= @shift.started_at.strftime("%-H時%-M分")%></td>
+    <td><%= @shift.end_at.strftime("%-H時%-M分") %></td>
     <td><%= @shift.job %></td>
     <td><%= @shift.assigned_user %></td>
   </tr>
