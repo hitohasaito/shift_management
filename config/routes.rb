@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "shifts#top"
+  root to: "users#top"
 
   devise_for:users, controllers: {
     registrations: 'users/registrations',
