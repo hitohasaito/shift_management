@@ -1,6 +1,7 @@
 FactoryBot.define do
 
   factory :shift do
+    id {1}
     duty_on { Time.zone.local(2019, 10, 10)   }
     started_at { DateTime.new(2019, 10 ,10, 10, 30, 45, 0.375) }
     end_at { DateTime.new(2019, 10 ,10, 17, 00, 45, 0.375) }
@@ -8,6 +9,7 @@ FactoryBot.define do
   end
 
   factory :second_shift, class: Shift do
+    id {2}
     duty_on { Time.zone.local(2019, 10, 20) }
     started_at { DateTime.new(2019, 10 ,20, 12, 00,45, 0.375) }
     end_at { DateTime.new(2019, 10 ,20, 20, 00, 45, 0.375) }
@@ -15,6 +17,7 @@ FactoryBot.define do
   end
 
   factory :third_shift, class: Shift do
+    id {3}
     duty_on { Time.zone.local(2019, 10, 30) }
     started_at { DateTime.new(2019, 10 ,30, 15, 00) }
     end_at { DateTime.new(2019, 10 ,30, 22, 00) }
