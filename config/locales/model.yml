@@ -8,7 +8,8 @@ ja:
     attributes:
       shift:
         duty_on: 勤務日
-        duty_at: 勤務時間
+        started_at: 勤務開始時間
+        end_at: 勤務終了時間
         job: 担当業務
         assigned_user: 担当者
       user:

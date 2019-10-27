@@ -10,9 +10,9 @@
 <% @requests.each do |r| %>
   <% if current_user.id == r.user_id || current_user.admin? %>
     <tr>
-      <td><%= r.worked_on %></td>
-      <td><%= r.start_work_at %></td>
-      <td><%= r.end_work_at %></td>
+      <td><%= r.worked_on.strftime("%Y年%-m月%-d日") %></td>
+      <td><%= r.start_work_at.strftime("%-H時%-M分") %></td>
+      <td><%= r.end_work_at.strftime("%-H時%-M分") %></td>
       <td><%= r.work_job %></td>
       <td><%= link_to "編集", edit_request_shift_path(r.id) %></td>
       <td><%= link_to "削除", request_shift_path(r.id), method: :delete, data: { confirm: '削除しますか？' } %></td>
