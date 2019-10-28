@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_user,only:[:destroy,:index]
+  before_action :check_admin_user,only:[:destroy,:index]
   before_action :set_id, only:[:destroy, :edit, :update]
   before_action :allow_without_password, only: [:update]
+  before_action :current_user_check,only:[:edit,:update]
+
 
   def index
     @users = User.all
@@ -42,8 +44,13 @@ class UsersController < ApplicationController
       end
   end
 
-  def check_user
+  def check_admin_user
     redirect_to shifts_path, notice: "権限がありません" unless current_user.admin?
+  end
+
+  def current_user_check
+    @user = User.find(params[:id])
+    redirect_to shifts_path, notice:"権限がありません" unless current_user.id == @user.id
   end
 
   def set_id

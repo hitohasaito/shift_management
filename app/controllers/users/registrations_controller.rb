@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  prepend_before_action :require_no_authentication, :only => [ :cancel]
-  prepend_before_action :authenticate_scope!, :only => [:new,:create, :edit, :update, :destroy]
+  prepend_before_action :require_no_authentication,only:[ :cancel]
+  prepend_before_action :authenticate_scope!,only:[:new,:create, :edit, :update, :destroy]
   before_action :admin_check
+  before_action :current_user_check, only:[:edit, :update]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -18,14 +19,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    super
+  end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+  end
 
   # DELETE /resource
   # def destroy
@@ -48,6 +49,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     unless user_signed_in? && current_user.admin?
       redirect_to shifts_path,notice:"権限がありません"
     end
+  end
+
+  def current_user_check
+    redirect_to shifts_path notice:"権限がありません" unless current_user.id == resource
   end
   #
   # def sign_up(resource_name, resource)
