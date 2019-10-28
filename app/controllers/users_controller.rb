@@ -28,9 +28,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def top
-  end
-
   private
 
   def user_params
@@ -50,7 +47,7 @@ class UsersController < ApplicationController
 
   def current_user_check
     @user = User.find(params[:id])
-    redirect_to shifts_path, notice:"権限がありません" unless current_user.id == @user.id
+    redirect_to shifts_path, notice:"権限がありません" unless current_user.id == @user.id || current_user.admin?
   end
 
   def set_id
