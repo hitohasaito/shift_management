@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_25_131759) do
+ActiveRecord::Schema.define(version: 2019_10_28_100939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2019_10_25_131759) do
     t.bigint "shift_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "assigned_time"
+    t.integer "assigned_time", null: false
     t.index ["shift_id"], name: "index_assigned_works_on_shift_id"
     t.index ["user_id"], name: "index_assigned_works_on_user_id"
   end
@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 2019_10_25_131759) do
     t.string "work_job", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.time "end_work_at"
+    t.integer "user_id", null: false
+    t.time "end_work_at", null: false
     t.index ["user_id"], name: "index_request_shifts_on_user_id"
   end
 
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2019_10_25_131759) do
     t.string "assigned_user"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.time "end_at"
+    t.time "end_at", null: false
     t.integer "status", limit: 2, default: 1, null: false
   end
 
