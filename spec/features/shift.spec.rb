@@ -20,14 +20,14 @@ RSpec.feature "シフト情報管理機能", type: :feature do
 
         click_button 'ログイン'
 
-        expect(page).to have_content "ようこそ！"
+        expect(page).to have_content "ログインしました"
     end
 
     scenario "シフト作成のテスト" do
       visit new_shift_path
     #select "ラベル", from: "セレクトメニューのid"
 
-      fill_in "shift_duty_on", with:"2019/10/28"
+      fill_in "shift_duty_on", with:Date.today+4
       fill_in "shift_job", with:"受付"
 
         # save_and_open_page
@@ -40,7 +40,7 @@ RSpec.feature "シフト情報管理機能", type: :feature do
 
       visit shifts_path
 
-      expect(page).to have_content "2019年10月28日"
+      expect(page).to have_content (Date.today+4).strftime("%Y年%-m月%-d日")
       expect(page).to have_content "10時10分"
       expect(page).to have_content "20時30分"
       expect(page).to have_content "受付"
@@ -49,8 +49,9 @@ RSpec.feature "シフト情報管理機能", type: :feature do
 
     scenario "シフト詳細確認のテスト" do
       visit shift_path(1)
+      # save_and_open_page
 
-      expect(page).to have_content "2019年10月10日"
+      expect(page).to have_content (Date.today+1).strftime("%Y年%-m月%-d日")
       expect(page).to have_content "10時30分"
       expect(page).to have_content "17時0分"
       expect(page).to have_content "自習室"
@@ -88,13 +89,13 @@ RSpec.feature "シフト情報管理機能", type: :feature do
     scenario "シフト一覧のテスト" do
       visit shifts_path
 
-      expect(page).to have_content "2019年10月10日"
+      expect(page).to have_content (Date.today+1).strftime("%Y年%-m月%-d日")
       expect(page).to have_content "10時30分"
       expect(page).to have_content "17時0分"
       expect(page).to have_content "自習室"
     end
   end
-  
+
     context 'アルバイトユーザーのログイン' do
       before do
         visit new_user_session_path
@@ -104,7 +105,7 @@ RSpec.feature "シフト情報管理機能", type: :feature do
 
           click_button 'ログイン'
 
-          expect(page).to have_content "ようこそ！"
+          expect(page).to have_content "ログインしました"
       end
 
       scenario "シフト作成画面にはアクセスできない" do
