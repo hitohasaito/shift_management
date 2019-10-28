@@ -30,15 +30,16 @@ end
   to = Time.parse("2019/11/31")
   date = Random.rand(from..to)
 
-  from = Time.parse("9:00:00")
-  to = Time.parse("13:00:00")
+  from = DateTime.create!(2019, 11 ,01, 10, 00, 45, 0.375)
+  to = DateTime.create!(2019, 11 ,01, 15, 00, 45, 0.375)
   start_time = Random.rand(from..to)
 
-  from = Time.parse("13:30:00")
-  to = Time.parse("22:00:00")
+  from = DateTime.create!(2019, 11 ,01, 15, 00, 45, 0.375)
+  to = DateTime.create!(2019, 11 ,01, 22, 00, 45, 0.375)
   end_time = Random.rand(from..to)
 
   job = "受付"
+  second_job = "自習室"
 
   Shift.create!(duty_on: date,
                 started_at: start_time,
@@ -46,28 +47,11 @@ end
                 job: job,
                 status: 1
                )
-end
-
-30.times do |n|
-
-  from = Time.parse("2019/11/01")
-  to = Time.parse("2019/11/31")
-  date = Random.rand(from..to)
-
-  from = Time.parse("9:00:00")
-  to = Time.parse("13:00:00")
-  start_time = Random.rand(from..to)
-
-  from = Time.parse("13:30:00")
-  to = Time.parse("23:00:00")
-  end_time = Random.rand(from..to)
-
-  job = "自習室"
 
   Shift.create!(duty_on: date,
                 started_at: start_time,
                 end_at: end_time,
-                job: job,
+                job: second_job,
                 status: 1
-               )
+              　)
 end
