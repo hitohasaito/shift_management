@@ -1,7 +1,8 @@
 class RequestShiftsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_params, only:[:edit,:update, :destroy]
-  before_action :check_user, only:[:edit, :update, :destroy]
+  before_action :set_id, only:[:edit,:update, :destroy]
+  before_action :check_admin_user, only:[:edit, :update, :destroy]
+
   def new
     @request = RequestShift.new
   end
@@ -9,7 +10,7 @@ class RequestShiftsController < ApplicationController
   def create
     @request = RequestShift.new(request_params)
     @request.user_id = current_user.id
-    if @request.save
+    if @request.save(context: :create)
       redirect_to request_shifts_path
     else
       render "new"
@@ -20,7 +21,7 @@ class RequestShiftsController < ApplicationController
   end
 
   def update
-    if @shift.update(shift_params)
+    if @request.update(request_params)
       redirect_to shifts_path, notice:"希望を変更しました"
     else
       render "edit"
@@ -43,11 +44,12 @@ class RequestShiftsController < ApplicationController
     params.require(:request_shift).permit(:worked_on, :start_work_at, :end_work_at, :work_job)
   end
 
-  def set_params
+  def set_id
     @request = RequestShift.find(params[:id])
   end
-  def check_user
+
+  def check_admin_user
     @request = RequestShift.find(params[:id])
-    redirect_to request_shifts_path, notice: "権限がありません。管理者に連絡してください" unless current_user.admin?
+    redirect_to new_request_shift_path, notice: "権限がありません。管理者に連絡してください" unless current_user.admin?
   end
 end
