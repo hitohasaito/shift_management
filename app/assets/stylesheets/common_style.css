@@ -4,3 +4,6 @@ background-image: url("backgroung-image.jpg");
 background-size: contain;
 font-family: 'monospace'
 }
+ul{
+  list-style: none;
+}
