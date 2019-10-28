@@ -1,4 +1,4 @@
-#comment_area {
+.comment_area {
     padding: 0.5em 1em;
     margin: 2em 0;
     font-weight: bold;
@@ -7,7 +7,7 @@
     border: solid 3px #6091d3;/*線*/
     border-radius: 10px;/*角の丸み*/
 }
-#comment_area p {
+.comment_area  p {
     margin: 0;
     padding: 0;
 }
