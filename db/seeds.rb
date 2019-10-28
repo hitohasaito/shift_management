@@ -41,7 +41,7 @@ end
   job = "受付"
 
   Shift.create!(duty_on: date,
-                started_at: time,
+                started_at: start_time,
                 end_at: end_time,
                 job: job,
                 status: 1
@@ -65,8 +65,8 @@ end
   job = "自習室"
 
   Shift.create!(duty_on: date,
-                started_at: time,
-                end_at: time,
+                started_at: start_time,
+                end_at: end_time,
                 job: job,
                 status: 1
                )
