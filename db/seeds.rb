@@ -31,10 +31,34 @@ end
   date = Random.rand(from..to)
 
   from = Time.parse("9:00:00")
+  to = Time.parse("13:00:00")
+  time = Random.rand(from..to)
+
+  from = Time.parse("13:30:00")
+  to = Time.parse("22:00:00")
+  time = Random.rand(from..to)
+
+  job = "受付"
+
+  Shift.create!(duty_on: date,
+                started_at: time,
+                end_at: time,
+                job: job,
+                status: 1
+               )
+end
+
+30.times do |n|
+
+  from = Time.parse("2019/10/01")
+  to = Time.parse("2019/10/31")
+  date = Random.rand(from..to)
+
+  from = Time.parse("9:00:00")
   to = Time.parse("23:00:00")
   time = Random.rand(from..to)
 
-  job = "受付"||"自習室"
+  job = "自習室"
 
   Shift.create!(duty_on: date,
                 started_at: time,
