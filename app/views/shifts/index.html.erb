@@ -6,17 +6,17 @@
 <div class = "serach_form">
   <%= search_form_for @q do |f| %>
 
-    <%= f.label:duty_on_cont, "勤務日"%>
-    <%= f.search_field:duty_on_cont , include_blank:true  %>
+    <%= f.label:duty_on_eq, "勤務日"%>
+    <%= f.date_field:duty_on_eq , include_blank:true  %>
 
-    <%= f.label:started_at_cont, "勤務開始時間"  %>
-    <%= f.search_field :started_at_cont , include_blank:true %>
+    <%= f.label:started_at_gteq, "勤務開始時間"  %>
+    <%= f.time_field :started_at_gteq , include_blank:true %>
 
-    <%= f.label:end_at_cont, "勤務終了時間" %>
-    <%= f.search_field :end_at_cont , include_blank:true %>
+    <%= f.label:end_at_lteq, "勤務終了時間" %>
+    <%= f.time_field :end_at_lteq , include_blank:true %>
 
-    <%= f.label:job_cont, "担当業務"  %>
-    <%= f.search_field:job_cont %>
+    <%= f.label:job_gteq, "担当業務"  %>
+    <%= f.search_field:job_gteq %>
 
     <%= f.label:assigned_user_cont, "担当者"  %>
     <%= f.search_field:assigned_user_cont %>
@@ -55,6 +55,7 @@
 <% end %>
 
 <% if current_user.admin? %>
+<h2>勤務希望確認</h2>
 <br>
 <table border="1" align="center">
   <tr>

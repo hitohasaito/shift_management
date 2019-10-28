@@ -11,7 +11,7 @@ class ShiftsController < ApplicationController
 
   def create
     @shift = Shift.new(shift_params)
-    if @shift.save
+    if @shift.save(context: :create)
       redirect_to shifts_path
     else
       render "new"
@@ -20,6 +20,7 @@ class ShiftsController < ApplicationController
 
   def index
     @shift = Shift.new
+
     @q = Shift.ransack(params[:q])
     @shifts = @q.result(distinct: :true)
 
@@ -33,31 +34,31 @@ class ShiftsController < ApplicationController
       #勤務業務にマッチしている人たちのuser_idと登録日時をゲット
       job_match_requests = @shift.match_jobs(@requests, @shift)
       #3つの配列で重複しているuser_idと登録日時をゲット
-      match_requests = [day_match_requests, time_match_requests,job_match_requests].inject(&:&)
+      match_requests = [day_match_requests, time_match_requests,job_match_requests].inject( &:& )
 
       if match_requests.present?
 
-         match_records = RequestShift.find(match_requests)
-         match_columns = match_records.pluck(:user_id, :created_at)
-         sort_user = match_columns.sort_by{|a, b| b }.first
-         match_user_id = sort_user.first
+         match_user_id = @shift.find_and_sort_user_id(match_requests)
 
-        assign = @shift.assigned_works.build(user_id: match_user_id, shift_id: @shift.id )
-        @user = User.find( match_user_id)
+         sum_worktime = @shift.end_at - @shift.started_at
+
+         assign = @shift.assigned_works.build(user_id: match_user_id, shift_id: @shift.id, assigned_time:sum_worktime )
+         @user = User.find( match_user_id)
         #ユーザーが持っているシフトの日付 登録しようとしている日付と同じだったら
-        if @user.shifts.pluck(:duty_on).include?(@shift.duty_on)
-          flash[:notice]= "#{@user.name}さんは#{@shift.duty_on}で勤務が登録されているシフトがあります。登録後は重複をチェックしてください"
-          @shift.assigned_user = assign.user.name
-          @shift.save
-          assign.save
-        else
-          @shift.assigned_user = assign.user.name
-          @shift.save
-          assign.save
-        end
+         if @user.shifts.pluck(:duty_on).include?(@shift.duty_on)
+           flash[:notice]= "#{@user.name}さんは#{@shift.duty_on}で勤務が登録されているシフトがあります。登録後は重複をチェックしてください"
+           @shift.assigned_user = assign.user.name
+           @shift.save
+           assign.save
+         else
+           @shift.assigned_user = assign.user.name
+           @shift.save
+           assign.save
+         end
       else
-          flash[:notice] = "合致する志望者がいません"
+          redirect_to shifts_path, notice: "合致する志望者がいません"
       end
+
     else
       @shift = Shift.all.order(created_at: :asc)
       @requests = RequestShift.all
