@@ -56,7 +56,7 @@ class ShiftsController < ApplicationController
            assign.save
          end
       else
-          redirect_to shift_path, notice: "合致する志望者がいません"
+          redirect_to shifts_path, notice: "合致する志望者がいません"
       end
 
     else
