@@ -10,29 +10,45 @@
   </head>
 
   <body>
-    <% if user_signed_in? && current_user.admin? %>
-      <%= link_to "シフト一覧", shifts_path %>
-      <%= link_to "勤務希望登録",new_request_shift_path %>
-      <%= link_to "勤務希望一覧",request_shifts_path %>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      <%= link_to "ユーザー一覧",users_path %>
-      <%= link_to "新規登録", new_user_registration_path %>
-      <%= link_to 'シフト作成', new_shift_path %>
-      <%= current_user.name %>
-    <% elsif user_signed_in? && ! current_user.admin? %>
-      <%= link_to "シフト一覧", shifts_path %>
-      <%= link_to "勤務希望登録",new_request_shift_path %>
-      <%= link_to "勤務希望一覧",request_shifts_path %>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      <%= link_to "編集", edit_user_path(current_user.id) %>
-      <p>ようこそ<%= current_user.name %>さん</p>
-    <% else %>
-      <%= link_to "新規登録", new_user_registration_path %>
-      <%= link_to "ログイン", new_user_session_path %>
-    <% end %>
-    <% if notice %>
-      <p class="alert alert-notice"><%= notice %></p>
-    <% end %>
+    <nav class="navbar navbar-default">
+	    <div class="container-fluid">
+		    <div class="navbar-header">
+			    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample1">
+				  <span class="sr-only">Toggle navigation</span>
+				  <span class="icon-bar"></span>
+				  <span class="icon-bar"></span>
+				  <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+				  <span class="icon-bar"></span>
+				  <span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="#">シフト管理お助けアプリ</a>
+		   </div>
+
+		   <div class="collapse navbar-collapse" id="navbarEexample1">
+			  <ul class="nav navbar-nav">
+          <% if user_signed_in? && current_user.admin? %>
+				    <li><%= link_to "シフト一覧", shifts_path %></li>
+				    <li><%= link_to "勤務希望登録",new_request_shift_path %></li>
+				    <li><%= link_to "勤務希望一覧",request_shifts_path %></li>
+            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to "ユーザー一覧",users_path %></li>
+            <li><%= link_to "新規登録", new_user_registration_path %></li>
+            <li><%= link_to 'シフト作成', new_shift_path %></li>
+          <% elsif user_signed_in? && ! current_user.admin? %>
+            <li><%= link_to "シフト一覧", shifts_path %></li>
+            <li><%= link_to "勤務希望登録",new_request_shift_path %></li>
+            <li><%= link_to "勤務希望一覧",request_shifts_path %></li>
+            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to "編集", edit_user_path(current_user.id) %></li>
+          <% else %>
+            <li><%= link_to "新規登録", new_user_registration_path %></li>
+            <li><%= link_to "ログイン", new_user_session_path %></li>
+          <% end %>
+			  </ul>
+		  </div>
+	  </div>
+   </nav>
     <% if alert %>
       <p class="alert alert-error"><%= alert %></p>
     <% end %>
