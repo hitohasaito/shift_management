@@ -2,4 +2,5 @@ body{
 text-align: center;
 background-image: url("backgroung-image.jpg");
 background-size: contain;
+font-family: 'monospace'
 }
