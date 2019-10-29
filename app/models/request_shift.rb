@@ -9,8 +9,11 @@ class RequestShift < ApplicationRecord
   validate :date_cannot_be_in_the_past, on: :create
 
   def time_check
-    errors.add(:end_work_at, "が不正です") unless
-    self.start_work_at < self.end_work_at
+    if self.start_work_at.present? && self.end_work_at.present?
+      if self.start_work_at > self.end_work_at
+        errors.add(:end_at, "が不正です")
+      end
+    end
   end
 
   def date_cannot_be_in_the_past
