@@ -37,6 +37,7 @@
             <li><%= link_to "新規登録", new_user_registration_path %></li>
             <li><%= link_to 'シフト作成', new_shift_path %></li>
             <li><%= link_to 'TOP', roots_top_path %></li>
+            <p class="navbar-text">ようこそ <a href="#" class="navbar-link"><%= current_user.name %>さん。</p>
           <% elsif user_signed_in? && ! current_user.admin? %>
             <li><%= link_to "シフト一覧", shifts_path %></li>
             <li><%= link_to "勤務希望登録",new_request_shift_path %></li>
@@ -44,12 +45,12 @@
             <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
             <li><%= link_to "ユーザープロフィール編集", edit_user_path(current_user.id) %></li>
             <li><%= link_to 'TOP', roots_top_path %></li>
+            <p class="navbar-text">ようこそ <a href="#" class="navbar-link"><%= current_user.name %>さん。</p>
           <% else %>
             <li><%= link_to "ログイン", new_user_session_path %></li>
             <li><%= link_to 'TOP', roots_top_path %></li>
           <% end %>
 			  </ul>
-        <p class="navbar-text">ようこそ <a href="#" class="navbar-link"><%= current_user.name %>さん。</p>
 		  </div>
 	  </div>
    </nav>
