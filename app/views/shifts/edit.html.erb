@@ -35,8 +35,8 @@
       <%= f.label:assigned_user %>
       <%= f.text_field:assigned_user %>
     </div>
-    
-  <% elsif @shift.assigned_user.empty? %>
+
+  <% elsif @shift.assigned_user.nil? %>
     <div class = "shift_info">
       <%= f.label:assigned_user %>
       <%= f.text_field:assigned_user %>
