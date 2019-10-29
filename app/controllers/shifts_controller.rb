@@ -18,11 +18,41 @@ class ShiftsController < ApplicationController
     end
   end
 
+  def release
+    shifts = Shift.where(status:0)#0はnonreleasedとしてenumで定義
+    shifts.update(status:1)
+    @shifts = Shift.where(status:"released")
+    redirect_to  shifts_path, notice: '公開しました'
+  end
+
+  def nonrelease
+    shifts = Shift.where(status:1)#1はreleasedとしてenumで定義
+    shifts.update(status:0)
+    @shifts = Shift.where(status:"nonreleased")
+    redirect_to  shifts_path, notice: '非公開にしました'
+  end
+
+
   def index
     # @shift = Shift.new
     @requests = RequestShift.all
     @q = Shift.ransack(params[:q])
     @shifts = @q.result(distinct: :true).order(duty_on: :asc)
+
+    if params[:shift_nonrelease]
+
+      shifts = Shift.where(status:1)#1はreleasedとしてenumで定義
+      shifts.update(status:0)
+      @shifts = Shift.where(status:1)
+      flash.now[:notice] = '非公開にしました'
+    end
+
+    if params[:shift_release]
+      shifts = Shift.where(status:0)#はnonreleasedとしてenumで定義
+      shifts.update(status:1)
+      @shifts = Shift.where(status:1)
+      flash.now[:notice] = '公開しました'
+    end
 
     if params[:id]
       @requests = RequestShift.all
@@ -78,20 +108,6 @@ class ShiftsController < ApplicationController
   def destroy
     @shift.destroy
     redirect_to shifts_path, notice: "削除しました"
-  end
-
-  def release
-    shifts = Shift.where(status:0)#0はnonreleasedとしてenumで定義
-    shifts.update(status:1)
-    @shifts = Shift.where(status:1)
-    redirect_to  shifts_path, notice: '公開しました'
-  end
-
-  def nonrelease
-    shifts = Shift.where(status:1)#1はreleasedとしてenumで定義
-    shifts.update(status:0)
-    @shifts = Shift.where(status:0)
-    redirect_to  shifts_path, notice: '非公開にしました'
   end
 
   private

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root to: "roots#top"
-  
+
   get 'roots/top'
   devise_for:users, controllers: {
     registrations: 'users/registrations',
@@ -12,10 +12,6 @@ resources :users, only: [:index, :edit, :update, :destroy]
 
   resources :shifts do
     resources :comments
-    collection do
-    patch :release
-    patch :nonrelease
-    end
   end
   resources :request_shifts
 
