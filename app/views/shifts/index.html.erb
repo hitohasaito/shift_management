@@ -52,7 +52,7 @@
   </tr>
 <% end %>
 </table>
-<% elsif current_user.admin? %>
+<% elsif current_user.admin? && nonreleased? %>
     <%= link_to '公開する',release_shifts_path, method: :patch%>
 <% end %>
 
