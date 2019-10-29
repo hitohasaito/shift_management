@@ -1,8 +1,8 @@
 class RequestShiftsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_id, only:[:edit,:update, :destroy]
+  before_action :set_id, only:[:edit,:update, :destroy, :show]
   before_action :check_admin_user, only:[:edit, :update, :destroy]
-
+  before_action :check_admin_user_or_current_user,only:[:show]
   def new
     @request = RequestShift.new
   end
@@ -30,12 +30,15 @@ class RequestShiftsController < ApplicationController
 
   def destroy
     @request.destroy
-    redirect_to request_shifts_path
+    redirect_to shifts_path
     flash[:notice] = "削除しました"
   end
 
   def index
     @requests = RequestShift.all
+  end
+
+  def show
   end
 
   private
@@ -51,5 +54,10 @@ class RequestShiftsController < ApplicationController
   def check_admin_user
     @request = RequestShift.find(params[:id])
     redirect_to new_request_shift_path, notice: "権限がありません。管理者に連絡してください" unless current_user.admin?
+  end
+
+  def check_admin_user_or_current_user
+    @request = RequestShift.find(params[:id])
+    redirect_to new_request_shift_path, notice: "権限がありません。" unless current_user.admin? || @request.user_id == current_user.id
   end
 end
