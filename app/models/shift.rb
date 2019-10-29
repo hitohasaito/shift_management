@@ -14,8 +14,8 @@ class Shift < ApplicationRecord
 
   def time_check
     if self.started_at.present? && self.end_at.present?
-    errors.add(:end_at, "が不正です") unless
-    self.started_at  < self.end_at
+      errors.add(:end_at, "が不正です") unless
+      self.started_at  < self.end_at
   end
   end
 
