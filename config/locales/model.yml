@@ -12,6 +12,7 @@ ja:
         end_at: 勤務終了時間
         job: 担当業務
         assigned_user: 担当者
+        status: 公開/非公開ステータス
       user:
         number: 電話番号
         name: 名前
