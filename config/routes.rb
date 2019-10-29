@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  get 'roots/top'
-  root to: "roots#top"
 
+  root to: "roots#top"
+  
+  get 'roots/top'
   devise_for:users, controllers: {
     registrations: 'users/registrations',
     sessions: "users/sessions",
