@@ -13,8 +13,10 @@ class Shift < ApplicationRecord
   enum status:{nonreleased: 0, released: 1}
 
   def time_check
+    if self.started_at.present? && self.end_at.present?
     errors.add(:end_at, "が不正です") unless
-    self.started_at < self.end_at
+    self.started_at  < self.end_at
+  end
   end
 
   def date_cannot_be_in_the_past
