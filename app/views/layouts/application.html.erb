@@ -50,11 +50,7 @@
           <% end %>
 			  </ul>
         <p class="navbar-text">ようこそ
-          <% if current_user.admin? %>
-            <%= current_user.name %>さん。あなたは管理者ユーザーです
-          <% else %>
-            <%= current_user.name %>さん
-          <% end %>
+            <%= current_user.name %>さん。
         </p>
 		  </div>
 	  </div>
