@@ -42,7 +42,7 @@
             <li><%= link_to "勤務希望登録",new_request_shift_path %></li>
             <li><%= link_to "勤務希望一覧",request_shifts_path %></li>
             <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-            <li><%= link_to "編集", edit_user_path(current_user.id) %></li>
+            <li><%= link_to "ユーザープロフィール編集", edit_user_path(current_user.id) %></li>
             <li><%= link_to 'TOP', roots_top_path %></li>
           <% else %>
             <li><%= link_to "ログイン", new_user_session_path %></li>
