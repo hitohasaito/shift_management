@@ -36,6 +36,11 @@
       <%= f.text_field:assigned_user %>
     </div>
 
+    <div class = "shift_info">
+      <%= f.label:status %>
+      <%=  f.select :status, Shift.statuses.keys %>
+    </div>
+
   <% elsif @shift.assigned_user.empty? %>
     <div class = "shift_info">
       <%= f.label:assigned_user %>
