@@ -1,0 +1,18 @@
+<h1>勤務希望詳細</h1>
+<table border="1" align="center">
+  <tr>
+    <th>勤務希望日</th>
+    <th>勤務開始希望時間</th>
+    <th>勤務終了希望時間</th>
+    <th>希望業務</th>
+    <th colspan="2"></th>
+  </tr>
+  <tr>
+    <td><%= @request.worked_on.strftime("%Y年%-m月%-d日") %></td>
+    <td><%= @request.start_work_at.strftime("%-H時%-M分") %></td>
+    <td><%= @request.end_work_at.strftime("%-H時%-M分") %></td>
+    <td><%= @request.work_job %></td>
+    <td><%= link_to "編集", edit_request_shift_path(@request.id) %></td>
+    <td><%= link_to "削除", request_shift_path(@request.id), method: :delete, data: { confirm: '削除しますか？' } %></td>
+  </tr>
+</table>
