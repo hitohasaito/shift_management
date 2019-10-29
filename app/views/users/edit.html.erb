@@ -1,5 +1,8 @@
 <h2>ユーザー情報変更</h2>
-<p>パスワード以外の情報を変更したい場合は、管理者に連絡してください</p>
+<% unless current_user.admin? %>
+  <p>パスワード以外の情報を変更したい場合は、管理者に連絡してください</p>
+<% end %>
+
 <%= form_with(model: @user, local:true) do |f| %>
 <% if @user.errors.any? %>
 <div class = "alert alert-warning">
