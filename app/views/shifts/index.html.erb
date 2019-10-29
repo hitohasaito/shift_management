@@ -79,7 +79,7 @@
     <td><%= r.work_job %></td>
     <td><%= r.user.name %></td>
     <td><%= r.created_at.strftime("%-m月%-d日 %-H時%-M分%-S秒") %></td>
-    <td><%= link_to "編集", edit_request_shift_path(r.id)%></td>
+    <td><%= link_to "詳細",request_shift_path(r.id)%></td>
   </tr>
 <% end %>
 </table>
