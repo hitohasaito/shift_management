@@ -49,12 +49,13 @@
             <li><%= link_to 'TOP', roots_top_path %></li>
           <% end %>
 			  </ul>
-        <p class="navbar-text">ようこそ <a href="#" class="navbar-link">
+        <p class="navbar-text">ようこそ
           <% if current_user.admin? %>
             <%= current_user.name %>さん。あなたは管理者ユーザーです
           <% else %>
-            <%= current_user.name %>さん</p>
+            <%= current_user.name %>さん
           <% end %>
+        </p>
 		  </div>
 	  </div>
    </nav>
