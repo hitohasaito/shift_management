@@ -1,8 +1,8 @@
 <h1>シフト一覧</h1>
-  <% if released?%>
-   <% if current_user.admin? %>
+<% if released? %>
+  <% if current_user.admin? %>
     <%= link_to '非公開にする', nonrelease_shifts_path, method: :patch  %>
-   <% end %>
+  <% end %>
 <div class = "serach_form">
   <%= search_form_for @q do |f| %>
 
@@ -53,9 +53,11 @@
 <% elsif current_user.admin? %>
     <%= link_to '公開する',release_shifts_path, method: :patch%>
 <% end %>
+
+
 <br>
 <% if current_user.admin? %>
-<h2>勤務希望確認</h2>
+<h2>アルバイトユーザー勤務希望一覧</h2>
 <br>
 <table border="1" align="center">
   <tr>
@@ -75,7 +77,7 @@
     <td><%= r.work_job %></td>
     <td><%= r.user.name %></td>
     <td><%= r.created_at.strftime("%-m月%-d日 %-H時%-M分%-S秒") %></td>
-    <td><%= link_to "詳細", request_shifts_path %></td>
+    <td><%= link_to "詳細", request_shift_path(r.id) %></td>
   </tr>
 <% end %>
 </table>

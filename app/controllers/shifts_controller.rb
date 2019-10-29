@@ -82,16 +82,16 @@ class ShiftsController < ApplicationController
 
   def release
     shifts = Shift.all
-      shifts.update(status:1)
-      @shifts = Shift.where(status:1)#1はreleasedとしてenumで定義
-      redirect_to  shifts_path, notice: '公開しました'
+    shifts.update(status:1)
+    @shifts = Shift.where(status:1)#1はreleasedとしてenumで定義
+    redirect_to  shifts_path, notice: '公開しました'
   end
 
   def nonrelease
-      shifts = Shift.all
-      shifts.update(status:0)
-      @shifts = Shift.where(status:0)#0はnonreleasedとしてenumで定義
-      redirect_to  shifts_path, notice: '非公開にしました'
+    shifts = Shift.all
+    shifts.update(status:0)
+    @shifts = Shift.where(status:0)#0はnonreleasedとしてenumで定義
+    redirect_to  shifts_path, notice: '非公開にしました'
   end
 
   private
