@@ -108,6 +108,7 @@ RSpec.feature "シフト情報管理機能", type: :feature do
           expect(page).to have_content "ログインしました"
       end
 
+
       scenario "シフト作成画面にはアクセスできない" do
         visit new_shift_path
         visit shifts_path
