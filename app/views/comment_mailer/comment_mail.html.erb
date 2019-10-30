@@ -1,11 +1,11 @@
 <h1>以下のシフトにコメントが追加されました</h1>
-<p>勤務日<%= @comment.shift.duty_on %></p>
+<p>勤務日:<%= @comment.shift.duty_on.strftime("%Y年%-m月%-d日")  %></p>
 <p>
-  勤務時間:<%= @comment.shift.started_at %>〜<%= @comment.shift.end_at %>
+  勤務時間:<%= @comment.shift.started_at.strftime("%-H時%-M分") %>〜<%= @comment.shift.end_at.strftime("%-H時%-M分") %>
 </p>
 <p>
-<p><%= @comment.shift.job %></p>
-<p><%= @comment.shift.assigned_user %></p>
+<p>担当業務:<%= @comment.shift.job %></p>
+<p>担当者:<%= @comment.shift.assigned_user %></p>
 
 <h2>コメント内容</h2>
 <p>ユーザー:<%= @comment.user.name %></p>
