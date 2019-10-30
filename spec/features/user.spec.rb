@@ -16,7 +16,7 @@ RSpec.feature "ユーザー", type: :feature do
 
     click_button "ログイン"
 
-    expect(page).to have_content "ようこそ！"
+    expect(page).to have_content "ログインしました"
   #save_and_open_page
   end
 
@@ -29,7 +29,7 @@ RSpec.feature "ユーザー", type: :feature do
 
       click_button 'ログイン'
 
-      expect(page).to have_content "ようこそ！"
+      expect(page).to have_content "ログインしました"
     end
 
     scenario "ユーザー登録のテスト" do
@@ -58,7 +58,7 @@ RSpec.feature "ユーザー", type: :feature do
 
       click_button 'ログイン'
 
-      expect(page).to have_content "ようこそ！"
+      expect(page).to have_content "ログインしました"
     end
 
     scenario "自分以外のユーザー編集画面へアクセスできないテスト" do

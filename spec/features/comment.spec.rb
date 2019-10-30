@@ -17,7 +17,7 @@ RSpec.feature "コメント機能管理", type: :feature do
 
     click_button 'ログイン'
 
-    expect(page).to have_content "ようこそ！"
+    expect(page).to have_content "ログインしました"
 
   end
 
