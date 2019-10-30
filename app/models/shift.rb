@@ -1,7 +1,7 @@
 class Shift < ApplicationRecord
   include RansackerTranslator
 
-  ransacker_translate :assigned_user,
+  ransacker_translate :assigned_user
   has_many :assigned_works, dependent: :destroy
   has_many :users, through: :assigned_works, source: :user, dependent: :destroy
   has_many :comments, dependent: :destroy
