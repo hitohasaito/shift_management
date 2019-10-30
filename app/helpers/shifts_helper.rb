@@ -1,8 +1,5 @@
 module ShiftsHelper
   def release
-    status = Shift.all.select('status')
-    status.each do |s|
-      s == released
-    end
+    Shift.where(statu:1).present?
   end
 end
