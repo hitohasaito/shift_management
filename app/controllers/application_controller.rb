@@ -1,5 +1,9 @@
 class ApplicationController < ActionController::Base
+  include RansackerTranslator::FormatRansackParameters
+
+  before_action :format_ransack_params
   before_action :configure_permitted_parameters, if: :devise_controller?
+
 
   protected
 

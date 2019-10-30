@@ -180,6 +180,9 @@ GEM
       activesupport (>= 5.0)
       i18n
       polyamorous (= 2.3.0)
+    ransacker_translator (0.0.4)
+      rails (>= 4.0.0)
+      ransack
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
@@ -281,6 +284,7 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 5.2.3)
   ransack
+  ransacker_translator
   rspec-rails
   sass-rails (~> 5.0)
   selenium-webdriver
