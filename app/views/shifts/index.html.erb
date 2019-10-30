@@ -4,6 +4,14 @@
     <%= link_to '非公開にする', shifts_path(shift_nonrelease: "true") %>
     <%= link_to '公開する',shifts_path(shift_release: "true")%>
   <% end %>
+  <% if @shift.present? %>
+    <% if release? %>
+      <p>公開中です</p>
+    <% else %>
+      <p>非公開になっています</p>
+    <% end %>
+  <% end %>
+
 <div class = "serach_form">
   <%= search_form_for @q do |f| %>
 
