@@ -55,6 +55,7 @@ class ShiftsController < ApplicationController
     end
 
     if params[:id]
+
       @requests = RequestShift.all
       @shift = Shift.find(params[:id])
 
@@ -82,8 +83,10 @@ class ShiftsController < ApplicationController
            @shift.save
            assign.save
          end
+      elsif @shift.assigned_user.present?
+        redirect_to shifts_path, notice: "既に担当が決まっています"
       else
-        redirect_to shifts_path, notice: "合致する志望者がいません"
+        redirect_to shifts_path, notice: "合致する希望者はいません"
       end
     end
   end
