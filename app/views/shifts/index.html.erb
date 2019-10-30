@@ -5,7 +5,7 @@
     <%= link_to '公開する',shifts_path(shift_release: "true")%>
   <% end %>
   <% if @shift.present? %>
-    <% if release? %>
+    <% if release %>
       <p>公開中です</p>
     <% else %>
       <p>非公開になっています</p>
