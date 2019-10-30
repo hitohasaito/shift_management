@@ -73,3 +73,24 @@ devise ransack
 4.git commit -m "コミットメッセージ"  
 5.git push heroku master  
 6.heroku run rails db:migrate
+
+
+
+初回ログイン
+------------
+seedデータで作成された管理者で初回ログインし、アルバイトユーザーの登録を行ってください。
+
+その後はメールアドレスやパスワードなど変更可能です。
+
+管理者初回ログインメールアドレス
+suzuki@mail.com"  
+パスワード  
+password  
+
+
+seedデータ投入手順
+-----------------
+config/initializers/locale.rb内の以下をコメントアウトし、rails db:seedを実行
+
+I18n.config.available_locales = :ja  
+I18n.default_locale = :ja  
