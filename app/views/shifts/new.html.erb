@@ -17,11 +17,11 @@
 
 <div class = "shift_info">
   <%= f.label:started_at %>
-  <%= f.time_select :started_at %>
+  <%= f.time_select :started_at,{minute_step:5} %>
 </div>
 <div class = "shift_info">
     <%= f.label:end_at %>
-    <%= f.time_select :end_at %>
+    <%= f.time_select :end_at,{minute_step:5} %>
 </div>
 <div class = "shift_info">
   <%= f.label:job %>

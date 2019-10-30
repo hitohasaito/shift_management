@@ -16,12 +16,12 @@
 
 <div class = "request_info">
   <%= f.label:start_work_at %>
-  <%= f.time_select:start_work_at %>
+  <%= f.time_select:start_work_at,{minute_step:5} %>
 </div>
 
 <div class = "request_info">
   <%= f.label:end_work_at %>
-  <%= f.time_select:end_work_at %>
+  <%= f.time_select:end_work_at ,{minute_step:5}%>
 </div>
 
 <div class = "request_info">
