@@ -36,6 +36,8 @@
       <%= f.select:assigned_user,User.pluck(:name)%>
     </div>
 
+   <%= f.submit %>
+
   <% elsif @shift.assigned_user.nil? %>
   <div class = "shift_info">
     <%= f.hidden_field:duty_on %>
@@ -66,8 +68,8 @@
       <%= f.label:assigned_user,"このシフトに入る"%>
       <%= f.check_box :assigned_user, {}, current_user.name, "" %>
     </div>
+  <%= f.submit %>
   <% else %>
     <p>権限がありません</p>
   <% end %>
-  <%= f.submit %>
 <% end %>
