@@ -36,8 +36,33 @@
       <%= f.select:assigned_user,User.pluck(:name)%>
     </div>
 
-  <% elsif @shift.assigned_user.empty? %>
-    <div class = "shift_info">
+  <% elsif @shift.assigned_user.nil? %>
+  <div class = "shift_info">
+    <%= f.hidden_field:duty_on %>
+    <%= f.hidden_field:duty_on %>
+
+    日付:<%= @shift.duty_on.strftime("%Y年%-m月%-d日") %>
+  </div>
+
+  <div class = "shift_info">
+    <%= f.hidden_field :started_at %>
+    <%= f.hidden_field :started_at,{minute_step:5} %>
+    勤務開始時間:<%= @shift.started_at.strftime("%-H時%-M分") %>
+  </div>
+
+  <div class = "shift_info">
+    <%= f.hidden_field :end_at %>
+    <%= f.hidden_field :end_at,{minute_step:5} %>
+    勤務終了時間:<%= @shift.end_at.strftime("%-H時%-M分") %>
+  </div>
+
+  <div class = "shift_info">
+    <%= f.hidden_field :job %>
+    <%= f.hidden_field :job %>
+    担当業務:<%= @shift.job %>
+  </div>
+
+  <div class = "shift_info">
       <%= f.label:assigned_user,"このシフトに入る"%>
       <%= f.check_box :assigned_user, {}, current_user.name, "" %>
     </div>
