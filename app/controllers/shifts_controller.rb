@@ -1,6 +1,6 @@
 class ShiftsController < ApplicationController
   before_action :get_id, only:[:show, :edit, :update, :destroy]
-  before_action :check_user, only:[:create]
+  before_action :check_user, only:[:create,:destroy]
   before_action :authenticate_user!
   before_action :check_released, only:[:index]
 
