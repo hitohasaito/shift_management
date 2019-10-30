@@ -90,7 +90,4 @@ password
 
 seedデータ投入手順
 -----------------
-config/initializers/locale.rb内の以下をコメントアウトし、rails db:seedを実行
-
-I18n.config.available_locales = :ja  
-I18n.default_locale = :ja  
+rails db:seedを実行
