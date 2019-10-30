@@ -5,7 +5,7 @@
     <%= link_to '公開する',shifts_path(shift_release: "true")%>
   <% end %>
   <% if @shift.present? %>
-    <% if release %>
+    <% if release? %>
       <p>公開中です</p>
     <% else %>
       <p>非公開になっています</p>
@@ -34,6 +34,7 @@
   <% end %>
 </div>
 <br>
+<% if current_user.admin? && nonrelease?%>
 <table border="1" align="center">
   <tr>
     <th>勤務日</th>
@@ -60,6 +61,36 @@
     <% end %>
   </tr>
 <% end %>
+
+<% elsif current_user.present? && release? %>
+<table border="1" align="center">
+  <tr>
+    <th>勤務日</th>
+    <th>勤務開始時間</th>
+    <th>勤務終了時間</th>
+    <th>担当業務</th>
+    <th>担当者</th>
+    <th>コメント数</th>
+    <th>ステータス</th>
+    <th colspan="3"></th>
+  </tr>
+<% @shifts.each do |s| %>
+  <tr>
+    <td><%= s.duty_on.strftime("%Y年%-m月%-d日") %></td>
+    <td><%= s.started_at.strftime("%-H時%-M分")%></td>
+    <td><%= s.end_at.strftime("%-H時%-M分")%></td>
+    <td><%= s.job %></td>
+    <td><%= s.assigned_user %></td>
+    <td><%= s.comments.count %></td>
+    <td><%= s.status %></td>
+    <td><%= link_to "詳細", shift_path(s.id)%></td>
+    <% if current_user.admin? %>
+      <td><%= link_to '照合', shifts_path(@shift, id: s.id) %></td>
+    <% end %>
+  </tr>
+<% end %>
+<% end %>
+
 </table>
 
 

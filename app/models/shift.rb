@@ -13,7 +13,7 @@ class Shift < ApplicationRecord
   validate :time_check
   validate :date_cannot_be_in_the_past, on: :create
 
-  enum status:{nonreleased: 0, released: 1}
+  enum status:{released: 0,nonreleased: 1}
 
   def time_check
     if self.started_at.present? && self.end_at.present?
