@@ -4,13 +4,6 @@
     <%= link_to '非公開にする', shifts_path(shift_nonrelease: "true") %>
     <%= link_to '公開する',shifts_path(shift_release: "true")%>
   <% end %>
-  <% if @shift.present? %>
-    <% if release? %>
-      <p>公開中です</p>
-    <% else %>
-      <p>非公開になっています</p>
-    <% end %>
-  <% end %>
 
 <div class = "serach_form">
   <%= search_form_for @q do |f| %>
@@ -54,14 +47,11 @@
     <td><%= s.job %></td>
     <td><%= s.assigned_user %></td>
     <td><%= s.comments.count %></td>
-    <td><%= s.status %></td>
     <td><%= link_to "詳細", shift_path(s.id)%></td>
-    <% if current_user.admin? %>
-      <td><%= link_to '照合', shifts_path(@shift, id: s.id) %></td>
+    <td><%= s.status %></td>
+    <td><%= link_to '照合', shifts_path(@shift, id: s.id) %></td>
     <% end %>
   </tr>
-<% end %>
-
 <% elsif current_user.present? && release? %>
 <table border="1" align="center">
   <tr>
@@ -71,7 +61,6 @@
     <th>担当業務</th>
     <th>担当者</th>
     <th>コメント数</th>
-    <th>ステータス</th>
     <th colspan="3"></th>
   </tr>
 <% @shifts.each do |s| %>
@@ -82,13 +71,13 @@
     <td><%= s.job %></td>
     <td><%= s.assigned_user %></td>
     <td><%= s.comments.count %></td>
-    <td><%= s.status %></td>
     <td><%= link_to "詳細", shift_path(s.id)%></td>
     <% if current_user.admin? %>
+      <td><%= s.status %></td>
       <td><%= link_to '照合', shifts_path(@shift, id: s.id) %></td>
     <% end %>
   </tr>
-<% end %>
+ <% end %>
 <% end %>
 
 </table>
