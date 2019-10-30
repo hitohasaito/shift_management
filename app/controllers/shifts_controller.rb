@@ -94,10 +94,10 @@ class ShiftsController < ApplicationController
   end
 
   def edit
-    # @shift.assigned_works.build
   end
 
   def update
+
     if @shift.update(shift_params)
       redirect_to shifts_path, notice:"シフト情報を変更しました"
     else
