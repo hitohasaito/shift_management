@@ -61,7 +61,8 @@
     <th>担当業務</th>
     <th>担当者</th>
     <th>コメント数</th>
-    <th colspan="3"></th>
+    <th>ステータス</th>
+    <th colspan="2"></th>
   </tr>
 <% @shifts.each do |s| %>
   <tr>
@@ -71,9 +72,9 @@
     <td><%= s.job %></td>
     <td><%= s.assigned_user %></td>
     <td><%= s.comments.count %></td>
+    <td><%= s.status %></td>
     <td><%= link_to "詳細", shift_path(s.id)%></td>
     <% if current_user.admin? %>
-      <td><%= s.status %></td>
       <td><%= link_to '照合', shifts_path(@shift, id: s.id) %></td>
     <% end %>
   </tr>
