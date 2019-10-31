@@ -38,7 +38,7 @@
 
    <%= f.submit %>
 
-  <% elsif @shift.assigned_user.nil? %>
+  <% elsif @shift.assigned_user.blank?%>
   <div class = "shift_info">
     <%= f.hidden_field:duty_on %>
     <%= f.hidden_field:duty_on %>
