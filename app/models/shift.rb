@@ -17,7 +17,7 @@ class Shift < ApplicationRecord
 
   def time_check
     if self.started_at.present? && self.end_at.present?
-      if self.started_at > self.end_at
+      if  self.end_at.to_s(:time) < self.started_at.to_s(:time)
         errors.add(:end_at, "が不正です")
       end
     end
@@ -33,20 +33,29 @@ class Shift < ApplicationRecord
     days = requests.pluck(:worked_on)
     find_day = days.grep(shift.duty_on)
     match_request_days = RequestShift.where(worked_on: find_day)
-    day_match_users = match_request_days.pluck(:id)
+    day_match_ids = match_request_days.pluck(:id)
   end
 
   def match_times(shift)
-    match_request_times = RequestShift.where("start_work_at <= ? ", shift.started_at).where("end_work_at >= ? ", shift.end_at)
-    # binding.pry
-    match_time_users = match_request_times.pluck(:id)
+    starttime = RequestShift.pluck(:start_work_at).map{|time| time.to_s(:time)}
+    startid = RequestShift.pluck(:id)
+    s = startid.zip(starttime).to_h
+
+    endtime = RequestShift.pluck(:end_work_at).map{|time| time.to_s(:time)}
+    endid = RequestShift.pluck(:id)
+    e = endid.zip(endtime).to_h
+
+    start = s.find_all{|i,t| t <= shift.started_at.to_s(:time)}.to_h
+    ended = e.find_all{|i,t| t >= shift.end_at.to_s(:time)}.to_h
+
+    match_time_ids = start.keys && ended.keys
   end
 #勤務希望開始時間よりも、シフト開始時間の方が遅い
   def match_jobs(requests, shift)
     do_works = requests.pluck(:work_job)
     find_works = do_works.grep(shift.job)
     match_request_jobs = RequestShift.where(work_job: find_works)
-    job_match_users = match_request_jobs.pluck(:id)
+    job_match_ids = match_request_jobs.pluck(:id)
   end
 
   def find_and_sort_user_id(match_requests)
