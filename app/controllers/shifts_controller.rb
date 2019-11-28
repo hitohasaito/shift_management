@@ -21,13 +21,15 @@ class ShiftsController < ApplicationController
   def index
     # @shift = Shift.new
     @requests = RequestShift.all
+
     @q = Shift.ransack(params[:q])
     @shifts = @q.result(distinct: :true).order(duty_on: :asc)
+
 
     if params[:shift_nonrelease]
       shifts = Shift.where(status:0)#0はreleasedとしてenumで定義
       shifts.update(status:1)
-      @shifts = Shift.where(status:1)
+      @shifts = Shift.where(status:1).order(duty_on: :asc)
       flash.now[:notice] = '非公開にしました'
 
     end
