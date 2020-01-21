@@ -21,13 +21,15 @@ class ShiftsController < ApplicationController
   def index
     # @shift = Shift.new
     @requests = RequestShift.all
+
     @q = Shift.ransack(params[:q])
     @shifts = @q.result(distinct: :true).order(duty_on: :asc)
+
 
     if params[:shift_nonrelease]
       shifts = Shift.where(status:0)#0はreleasedとしてenumで定義
       shifts.update(status:1)
-      @shifts = Shift.where(status:1)
+      @shifts = Shift.where(status:1).order(duty_on: :asc)
       flash.now[:notice] = '非公開にしました'
 
     end
@@ -35,7 +37,7 @@ class ShiftsController < ApplicationController
     if params[:shift_release]
       shifts = Shift.where(status:1)#1はnonreleasedとしてenumで定義
       shifts.update(status:0)
-      @shifts = Shift.where(status:0)
+      @shifts = Shift.where(status:0).order(duty_on: :asc)
       flash.now[:notice] = '公開にしました'
     end
 
@@ -53,10 +55,10 @@ class ShiftsController < ApplicationController
       if match_requests.present?
          match_user_id = @shift.find_and_sort_user_id(match_requests)
 
-         sum_worktime = @shift.end_at - @shift.started_at
+         sum_worktime = @shift.end_at- @shift.started_at
          assign = @shift.assigned_works.build(user_id: match_user_id, shift_id: @shift.id, assigned_time:sum_worktime )
 
-         @user = User.find( match_user_id)
+         @user = User.find(match_user_id)
         #ユーザーが持っているシフトの日付 登録しようとしている日付と同じだったら
          if @user.shifts.pluck(:duty_on).include?(@shift.duty_on)
            @shift.assigned_user = assign.user.name

@@ -30,7 +30,9 @@ table td{
   padding: 10px;
 }
 
-
+ul{
+  list-style: none;
+}
 
 a {
   color: #DD356E;

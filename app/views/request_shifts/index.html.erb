@@ -1,10 +1,34 @@
 <h1>希望一覧</h1>
+
+<div class = "search_form">
+<%= search_form_for @q do |f| %>
+
+  <%= f.label:worked_on_eq, "勤務希望日"%>
+  <%= f.date_field:worked_on_eq , include_blank:true  %>
+
+  <%= f.label:start_work_at_gteq, "勤務開始希望時間"  %>
+  <%= f.time_field :start_work_at_gteq ,include_blank:true %>
+
+  <%= f.label:end_work_at_lteq, "勤務終了希望時間" %>
+  <%= f.time_field :end_work_at_lteq , include_blank:true %>
+
+  <%= f.label:work_job_cont, "希望業務"  %>
+  <%= f.search_field:work_job_cont %>
+
+  <%= f.label:user_id_eq, "アルバイト氏名"  %>
+  <%= f.search_field:user_id_eq %>
+
+  <%= f.submit "検索" %>
+<% end %>
+</div>
+
 <table border="1" align="center">
   <tr>
     <th>勤務希望日</th>
     <th>勤務開始希望時間</th>
     <th>勤務終了希望時間</th>
     <th>希望業務</th>
+    <th>アルバイト氏名</th>
     <th colspan="2"></th>
   </tr>
 <% @requests.each do |r| %>
@@ -14,6 +38,7 @@
       <td><%= r.start_work_at.strftime("%-H時%-M分") %></td>
       <td><%= r.end_work_at.strftime("%-H時%-M分") %></td>
       <td><%= r.work_job %></td>
+      <td><%= r.user.name %></td>
       <td><%= link_to "詳細",request_shift_path(r.id) %></td>
     </tr>
   <% end %>

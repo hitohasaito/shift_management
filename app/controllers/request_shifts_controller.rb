@@ -3,6 +3,7 @@ class RequestShiftsController < ApplicationController
   before_action :set_id, only:[:edit,:update, :destroy, :show]
   before_action :check_admin_user, only:[:edit, :update, :destroy]
   before_action :check_admin_user_or_current_user,only:[:show]
+
   def new
     @request = RequestShift.new
   end
@@ -22,7 +23,7 @@ class RequestShiftsController < ApplicationController
 
   def update
     if @request.update(request_params)
-      redirect_to shifts_path, notice:"希望を変更しました"
+      redirect_to request_shifts_path, notice:"希望を変更しました"
     else
       render "edit"
     end
@@ -35,7 +36,8 @@ class RequestShiftsController < ApplicationController
   end
 
   def index
-    @requests = RequestShift.all
+    @q = RequestShift.ransack(params[:q])
+    @requests = @q.result(distinct: :true).order(worked_on: :asc)
   end
 
   def show

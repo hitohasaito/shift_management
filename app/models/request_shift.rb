@@ -10,8 +10,8 @@ class RequestShift < ApplicationRecord
 
   def time_check
     if self.start_work_at.present? && self.end_work_at.present?
-      if self.start_work_at > self.end_work_at
-        errors.add(:end_at, "が不正です")
+      if self.end_work_at.to_s(:time) < self.start_work_at.to_s(:time)
+        errors.add(:end_work_at, "が不正です")
       end
     end
   end
