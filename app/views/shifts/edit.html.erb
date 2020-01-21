@@ -33,7 +33,7 @@
 
     <div class = "shift_info">
       <%= f.label:assigned_user %>
-      <%= f.select:assigned_user,User.pluck(:name)%>
+      <%= f.select:assigned_user,User.pluck(:name), include_blank:true %>
     </div>
 
    <%= f.submit %>
