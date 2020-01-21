@@ -42,8 +42,8 @@
 <% @shifts.each do |s| %>
   <tr>
     <td><%= s.duty_on.strftime("%Y年%-m月%-d日") %></td>
-    <td><%= s.started_at.strftime("%-H時%-M分")%></td>
-    <td><%= s.end_at.strftime("%-H時%-M分")%></td>
+    <td><%= s.started_at.strftime(" %p%-H時%-M分")%></td>
+    <td><%= s.end_at.strftime(" %p%-H時%-M分")%></td>
     <td><%= s.job %></td>
     <td><%= s.assigned_user %></td>
     <td><%= s.comments.count %></td>
@@ -80,34 +80,4 @@
   </tr>
  <% end %>
 <% end %>
-
 </table>
-
-
-<br>
-<% if current_user.admin? %>
-<h2>アルバイトユーザー勤務希望一覧</h2>
-<br>
-<table border="1" align="center">
-  <tr>
-    <th>勤務希望日</th>
-    <th>勤務開始希望時間</th>
-    <th>勤務終了希望時間</th>
-    <th>担当希望業務</th>
-    <th>アルバイト氏名</th>
-    <th>登録日時</th>
-    <th colspan="3"></th>
-  </tr>
-<% @requests.each do |r| %>
-  <tr>
-    <td><%= r.worked_on.strftime("%Y年%-m月%-d日") %></td>
-    <td><%= r.start_work_at.strftime("%-H時%-M分")%></td>
-    <td><%= r.end_work_at.strftime("%-H時%-M分")%></td>
-    <td><%= r.work_job %></td>
-    <td><%= r.user.name %></td>
-    <td><%= r.created_at.strftime("%-m月%-d日 %-H時%-M分%-S秒") %></td>
-    <td><%= link_to "詳細",request_shift_path(r.id)%></td>
-  </tr>
-<% end %>
-</table>
-<% end %>
