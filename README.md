@@ -49,7 +49,7 @@ https://docs.google.com/spreadsheets/d/1YOwR35FsnZkYWFS8X_xEACWmjajThaRa9MI-8DHk
 
 アルバイト一覧表示機能					
 
-ラベル追加機能							
+ラベル追加機能	（予定）						
 
 
 使用予定Gem
@@ -86,6 +86,11 @@ seedデータで作成された管理者で初回ログインし、アルバイ�
 admin@email.com"  
 パスワード  
 password  
+
+※登録済みユーザーメールアドレス  
+user0@email.com 〜 user10@email.com  
+パスワード  
+password0 〜 password10   
 
 
 seedデータ投入手順
