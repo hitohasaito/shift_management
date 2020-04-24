@@ -115,6 +115,6 @@ class ShiftsController < ApplicationController
   end
 
   def check_released
-    redirect_to new_shift_path, notice: "シフトはリリース前です" unless Shift.released.present? || current_user.admin?
+    redirect_to new_request_shift_path, notice: "シフトはリリース前です" unless Shift.released.present? || current_user.admin?
   end
 end
