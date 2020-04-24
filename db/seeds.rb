@@ -43,11 +43,4 @@ end
                 job: job,
                 status: 1
                )
-
-  Shift.create!(duty_on: date,
-                started_at: start_time,
-                end_at: end_time,
-                job: job,
-                status: 1
-              )
 end
