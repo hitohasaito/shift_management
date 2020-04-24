@@ -18,7 +18,10 @@
 <%= link_to "削除", shift_path(@shift.id), method: :delete, data: { confirm: '削除しますか？' } %>
 
 <section class="toukou">
-  <h4 align="center">*シフトに入ることができなくなった人は、ここに代理を探したい旨を書き込むことができます*</h4>
+  <h4 align="center">
+    シフトに入ることができなくなった人は、ここに代理を探したい旨を書き込むことができます。<br>
+    コメントが追加されると、登録者全員にメールで通知されます
+  </h4>
     <div id = "comment_area" align="center">
       <%= render partial: "comments/index", locals: {comments: @comments, shift:@shift} %>
     </div>
