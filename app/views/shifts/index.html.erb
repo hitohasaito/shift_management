@@ -1,11 +1,19 @@
 <h1>シフト一覧</h1>
-<p>
-  作成されたシフト一覧です。照合ボタンをクリックすると、勤務希望一覧からマッチしたアルバイトが入力されます。<br>
-  また、タイトル下の「公開」を押すとアルバイトに公開、「非公開」ボタンを押すと、非公開になります。<br>
-  デフォルトの設定は、非公開で設定していますので、作成し終わったタイミングで公開ボタンを押してください。
-</p>
 
-  <% if current_user.admin? %>
+<% if current_user.admin? %>
+  <p>
+	  <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#collapseSample1">
+		  管理者の方へ
+	  </button>
+  </p>
+  <div class="collapse" id="collapseSample1">
+	  <div class="well">
+      照合ボタンを押すと、勤務希望一覧からマッチしたアルバイトの指名が入力されます。<br>
+      公開・非公開ボタンではアルバイトへのシフトの公開・非公開を選択できます。<br>
+      デフォルトは非公開（nonreleased）となっていますので、シフトが完成したら、公開してください
+	  </div>
+  </div>
+
     <%= link_to '非公開にする', shifts_path(shift_nonrelease: "true") %>
     <%= link_to '公開する',shifts_path(shift_release: "true")%>
   <% end %>

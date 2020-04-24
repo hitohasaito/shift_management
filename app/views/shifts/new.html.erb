@@ -1,4 +1,6 @@
 <h1>シフト新規作成</h1>
+<p>登録したシフトは、シフト一覧画面に表示されます</p>
+
 <%= form_with(model:@shift, local:true) do |f| %>
   <% if @shift.errors.any? %>
     <div class = "alert alert-warning">
