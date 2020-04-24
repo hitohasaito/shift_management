@@ -11,14 +11,14 @@
 #                )
 # end
 
-10.times do |n|
-  User.create!(name: "user#{n}",
-               email: "user#{n}@email.com",
-               password: "password#{n}",
-               number: 12345678976,
-               admin: "false"
-               )
-end
+# 10.times do |n|
+#   User.create!(name: "user#{n}",
+#                email: "user#{n}@email.com",
+#                password: "password#{n}",
+#                number: 12345678976,
+#                admin: "false"
+#                )
+# end
 
 30.times do |n|
 
