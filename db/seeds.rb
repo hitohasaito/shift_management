@@ -20,7 +20,7 @@
 #                )
 # end
 
-30.times do |n|
+10.times do |n|
 
   from = Date.today
   to = Date.today+30
@@ -29,10 +29,11 @@
   from = Time.parse("9:00")
   to = Time.parse("13:00")
   start_time = Random.rand(from..to)
-
-  from = Time.parse("13:30")
-  to = Time.parse("22:00")
-  end_time = Random.rand(from..to)
+  #
+  # from = Time.parse("13:30")
+  # to = Time.parse("20:00")
+  # end_time = Random.rand(from..to)
+  end_time = start_time+36000
 
   job = "受付"
   second_job = "自習室"
